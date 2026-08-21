@@ -1,0 +1,81 @@
+# Configuracao do painel de edicao (Decap CMS).
+# Backend: Netlify Identity + Git Gateway — login proprio, sem conta no GitHub
+# nem custos. Ao gravar aqui, faz-se commit automatico no repositorio e o
+# Netlify republica o site sozinho.
+
+backend:
+  name: git-gateway
+  branch: main
+
+# Depois de publicado no Netlify, muda este valor para o URL real do site
+# (o painel de "media" e o preview usam-no para mostrar as imagens certas).
+site_url: https://SUBSTITUIR-PELO-TEU-SITE.netlify.app
+display_url: https://SUBSTITUIR-PELO-TEU-SITE.netlify.app
+logo_url: /images/placeholder.svg
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+publish_mode: simple
+locale: "pt"
+
+collections:
+  - name: "projetos"
+    label: "Projetos"
+    files:
+      - name: "projetos"
+        label: "Projetos"
+        file: "content/projetos.json"
+        # Um unico ficheiro com a lista de todos os projetos — o site le
+        # content/projetos.json de uma vez (ver js/conteudo.js) e ordena-os
+        # sozinho (em curso primeiro, depois do mais recente ao mais antigo).
+        # Nao e preciso mexer na ordem aqui nem escolher o numero: 01, 02...
+        # e calculado automaticamente a partir da data.
+        fields:
+          - label: "Projetos"
+            name: "projetos"
+            widget: "list"
+            summary: "{{titulo}} — {{data}}"
+            fields:
+              - { label: "Título (sempre em minúsculas)", name: "titulo", widget: "string", pattern: ['^[^A-ZÀ-Ý]*$', "Usa só minúsculas, mesmo na primeira letra."] }
+              - { label: "Identificador do URL (slug)", name: "slug", widget: "string", required: false, hint: "Deixa em branco para gerar a partir do título." }
+              - { label: "Data", name: "data", widget: "datetime", format: "YYYY-MM", date_format: "MMMM [de] YYYY", time_format: false, required: false, hint: "Usada para ordenar e para mostrar 'mês de ano' na home." }
+              - { label: "Projeto em curso", name: "emCurso", widget: "boolean", default: false, hint: "Se ligado, a home mostra 'em curso' em vez da data." }
+              - { label: "Categorias/tags", name: "categorias", widget: "list", required: false, hint: "Guardadas para o futuro; não organizam a página por agora." }
+              - { label: "Imagem de capa (quadrada)", name: "capa", widget: "image", required: false }
+              - label: "Imagens do projeto (quadradas)"
+                name: "imagens"
+                widget: "list"
+                required: false
+                fields:
+                  - { label: "Imagem", name: "imagem", widget: "image" }
+                  - { label: "Legenda", name: "legenda", widget: "string", required: false }
+              - { label: "Descrição curta (ficha técnica)", name: "descricao", widget: "text", required: false }
+              - { label: "Local", name: "local", widget: "string", required: false }
+              - { label: "Período (ex. 2024/2025)", name: "periodo", widget: "string", required: false }
+              - { label: "Disciplina / tipo", name: "disciplina", widget: "string", required: false }
+              - { label: "Área", name: "area", widget: "string", required: false }
+              - { label: "Colaboração", name: "colaboracao", widget: "string", required: false }
+              - { label: "Fotografia (créditos)", name: "fotografia", widget: "string", required: false }
+              - { label: "Orientação", name: "orientacao", widget: "string", required: false }
+
+  - name: "sobre"
+    label: "Sobre Mim"
+    files:
+      - name: "sobre"
+        label: "Sobre Mim"
+        file: "content/sobre.json"
+        fields:
+          - { label: "Foto (retrato)", name: "foto", widget: "image", required: false }
+          - { label: "Texto", name: "texto", widget: "text" }
+
+  - name: "contacto"
+    label: "Contacto"
+    files:
+      - name: "contacto"
+        label: "Contacto"
+        file: "content/contacto.json"
+        fields:
+          - { label: "Email", name: "email", widget: "string", required: false }
+          - { label: "Telefone", name: "telefone", widget: "string", required: false }
+          - { label: "Local", name: "local", widget: "string", required: false, hint: "ex. porto, portugal" }
