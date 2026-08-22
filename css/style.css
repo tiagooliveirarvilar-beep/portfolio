@@ -19,7 +19,7 @@
      projeto deixa de ser 100vh e passa a ser foto + espaco. */
   --foto-base: min(32vw, 300px);
   --foto-home: min(calc(var(--foto-base) * 1.5), 70vh);
-  --espaco-home: calc((100vh - var(--foto-base)) / 2);
+  --espaco-home: calc((100vh - var(--foto-base)) / 4);
 
   --num-size: clamp(30px, 4.6vw, 46px);
   --nome-size: clamp(14px, 1.6vw, 17px);
