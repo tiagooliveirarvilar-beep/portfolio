@@ -3,6 +3,30 @@
     {
       "imagens": [
         {
+          "imagem": "images/placeholder.svg",
+          "legenda": ""
+        }
+      ],
+      "categorias": [
+        "objetos"
+      ],
+      "descricao": "Peça de mobiliário desenhada e construída em carpintaria.",
+      "data": "2026-08",
+      "slug": "movel",
+      "local": "",
+      "fotografia": "",
+      "disciplina": "carpintaria",
+      "area": "objeto",
+      "periodo": "2024",
+      "capa": "/images/uploads/movel-bgr.png",
+      "emCurso": false,
+      "colaboracao": "",
+      "orientacao": "",
+      "titulo": "móvel de apoio"
+    },
+    {
+      "imagens": [
+        {
           "imagem": "/images/uploads/f07-serviços-lota-1.jpg"
         },
         {
@@ -124,30 +148,6 @@
       "colaboracao": "",
       "orientacao": "",
       "titulo": "tic tac"
-    },
-    {
-      "imagens": [
-        {
-          "imagem": "images/placeholder.svg",
-          "legenda": ""
-        }
-      ],
-      "categorias": [
-        "objetos"
-      ],
-      "descricao": "Peça de mobiliário desenhada e construída em carpintaria.",
-      "data": "2024-11",
-      "slug": "movel",
-      "local": "",
-      "fotografia": "",
-      "disciplina": "carpintaria",
-      "area": "objeto",
-      "periodo": "2024",
-      "capa": "images/placeholder.svg",
-      "emCurso": false,
-      "colaboracao": "",
-      "orientacao": "",
-      "titulo": "móvel"
     },
     {
       "imagens": [
