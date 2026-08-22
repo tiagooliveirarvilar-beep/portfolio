@@ -8,37 +8,6 @@
         }
       ],
       "categorias": [
-        "objetos"
-      ],
-      "descricao": "Peça de mobiliário desenhada e construída em carpintaria.",
-      "data": "2026-08",
-      "slug": "movel",
-      "local": "",
-      "fotografia": "",
-      "disciplina": "carpintaria",
-      "area": "objeto",
-      "periodo": "2024",
-      "capa": {
-        "imagem": "/images/uploads/movel-bgr.png",
-        "x": 0.08000000000000002,
-        "y": -0.13,
-        "w": 0.84,
-        "h": 1.26,
-        "proporcao": 1
-      },
-      "emCurso": false,
-      "colaboracao": "",
-      "orientacao": "",
-      "titulo": "móvel de apoio"
-    },
-    {
-      "imagens": [
-        {
-          "imagem": "images/placeholder.svg",
-          "legenda": ""
-        }
-      ],
-      "categorias": [
         "investigação"
       ],
       "descricao": "Investigação sobre a vida e a obra do arquiteto Alberto Ponis, com consulta prevista ao Archivio Ponis Zalaffi, em Palau, Sardenha.",
@@ -61,6 +30,37 @@
       "colaboracao": "",
       "orientacao": "",
       "titulo": "doca de pesca"
+    },
+    {
+      "imagens": [
+        {
+          "imagem": "images/placeholder.svg",
+          "legenda": ""
+        }
+      ],
+      "categorias": [
+        "objetos"
+      ],
+      "descricao": "Peça de mobiliário desenhada e construída em carpintaria.",
+      "data": "2026-08",
+      "slug": "movel",
+      "local": "",
+      "fotografia": "",
+      "disciplina": "carpintaria",
+      "area": "objeto",
+      "periodo": "2024",
+      "capa": {
+        "imagem": "/images/uploads/movel-bgr.png",
+        "x": 0.08000000000000002,
+        "y": -0.13,
+        "w": 0.84,
+        "h": 1.26,
+        "proporcao": 1
+      },
+      "emCurso": false,
+      "colaboracao": "",
+      "orientacao": "",
+      "titulo": "móvel de apoio"
     },
     {
       "imagens": [
