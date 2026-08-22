@@ -10,7 +10,7 @@
       <div class="projeto">
         <span class="projeto__num">${p.numero}</span>
         <a class="projeto__link" href="projeto.html?p=${encodeURIComponent(p.slug)}" aria-label="${p.titulo}">
-          <img class="projeto__foto" src="${p.capa || 'images/placeholder.svg'}" alt="${p.titulo}">
+          ${htmlImagem(p.capa, 'projeto__foto', p.titulo, 1)}
         </a>
         <span class="projeto__info">
           <span class="projeto__nome">${p.titulo}</span>

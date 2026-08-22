@@ -7,6 +7,10 @@ backend:
   name: git-gateway
   branch: main
 
+# So tem efeito em localhost (com "npx decap-server" a correr), para poder
+# testar o painel sem estar publicado. Em producao e ignorado.
+local_backend: true
+
 # Depois de publicado no Netlify, muda este valor para o URL real do site
 # (o painel de "media" e o preview usam-no para mostrar as imagens certas).
 site_url: https://portfoliotiagovilar.netlify.app
@@ -42,13 +46,13 @@ collections:
               - { label: "Data", name: "data", widget: "datetime", format: "YYYY-MM", date_format: "MMMM [de] YYYY", time_format: false, required: false, hint: "Usada para ordenar e para mostrar 'mês de ano' na home." }
               - { label: "Projeto em curso", name: "emCurso", widget: "boolean", default: false, hint: "Se ligado, a home mostra 'em curso' em vez da data." }
               - { label: "Categorias/tags", name: "categorias", widget: "list", required: false, hint: "Guardadas para o futuro; não organizam a página por agora." }
-              - { label: "Imagem de capa (quadrada)", name: "capa", widget: "image", required: false }
-              - label: "Imagens do projeto (quadradas)"
+              - { label: "Imagem de capa", name: "capa", widget: "recorte", required: false, forcarQuadrado: true, hint: "Arrasta o retângulo para escolher que parte da foto aparece na home. A capa é sempre quadrada." }
+              - label: "Imagens do projeto"
                 name: "imagens"
                 widget: "list"
                 required: false
                 fields:
-                  - { label: "Imagem", name: "imagem", widget: "image" }
+                  - { label: "Imagem", name: "imagem", widget: "recorte", hint: "Prefere-se quadrada. Se desligares 'manter quadrado', todas as imagens continuam com a mesma largura na página — só a altura muda." }
                   - { label: "Legenda", name: "legenda", widget: "string", required: false }
               - { label: "Descrição curta (ficha técnica)", name: "descricao", widget: "text", required: false }
               - { label: "Local", name: "local", widget: "string", required: false }

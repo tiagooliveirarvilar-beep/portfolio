@@ -115,7 +115,6 @@ img { display: block; max-width: 100%; }
   width: 75px;
   aspect-ratio: 3 / 4;
   object-fit: cover;
-  background: #C9C4B8;
 }
 
 /* Contacto por cima, texto do Sobre Mim em baixo — ambos encostados ao fundo,
@@ -184,9 +183,28 @@ img { display: block; max-width: 100%; }
 
 .projeto__foto {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1 / 1;   /* a capa e sempre quadrada */
+}
+
+/* Caixa de recorte: fixa a proporcao escolhida no painel e mostra so o pedaco
+   da foto que foi selecionado, sem deformar nada. */
+.recorte {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.recorte img {
+  position: absolute;
+  max-width: none;   /* anula o max-width:100% global, que estragaria a escala */
+}
+
+/* Imagem sem recorte definido dentro de uma caixa de proporcao fixa. */
+.recorte__cheia {
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  background: #C9C4B8;
 }
 
 .projeto__info {
@@ -252,13 +270,12 @@ img { display: block; max-width: 100%; }
   gap: var(--img-espaco);
 }
 
+/* Todas as imagens da galeria tem a mesma largura; so a altura muda conforme
+   o recorte escolhido no painel. */
 .galeria figure { margin: 0; width: var(--img-largura); }
 
-.galeria img {
-  width: 100%;
-  cursor: zoom-in;
-  background: #C9C4B8;
-}
+.galeria img { width: 100%; cursor: zoom-in; }
+.galeria .recorte { width: 100%; cursor: zoom-in; }
 
 .galeria figcaption {
   margin-top: .6em;

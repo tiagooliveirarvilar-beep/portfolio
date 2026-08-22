@@ -14,9 +14,11 @@
     ? projeto.imagens
     : [{ imagem: projeto.capa || 'images/placeholder.svg', legenda: '' }];
 
+  /* Todas as imagens saem com a mesma largura; so a altura acompanha o
+     recorte escolhido no painel. */
   document.getElementById('galeria').innerHTML = imagens.map(img => `
     <figure>
-      <img src="${img.imagem}" alt="${projeto.titulo}">
+      ${htmlImagem(img.imagem, 'galeria__foto', projeto.titulo)}
       ${img.legenda ? `<figcaption>${img.legenda}</figcaption>` : ''}
     </figure>
   `).join('');
