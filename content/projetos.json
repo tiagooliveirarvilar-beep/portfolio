@@ -75,8 +75,13 @@
     {
       "imagens": [
         {
-          "imagem": "images/placeholder.svg",
-          "legenda": ""
+          "imagem": "/images/uploads/f07-serviços-lota-1.jpg"
+        },
+        {
+          "imagem": "/images/uploads/f01-1.jpg"
+        },
+        {
+          "imagem": "/images/uploads/f05-1.20-lota-1.jpg"
         }
       ],
       "categorias": [
