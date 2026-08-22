@@ -18,40 +18,18 @@
       "disciplina": "carpintaria",
       "area": "objeto",
       "periodo": "2024",
-      "capa": "/images/uploads/movel-bgr.png",
+      "capa": {
+        "imagem": "/images/uploads/movel-bgr.png",
+        "x": 0.08000000000000002,
+        "y": -0.13,
+        "w": 0.84,
+        "h": 1.26,
+        "proporcao": 1
+      },
       "emCurso": false,
       "colaboracao": "",
       "orientacao": "",
       "titulo": "móvel de apoio"
-    },
-    {
-      "imagens": [
-        {
-          "imagem": "/images/uploads/f07-serviços-lota-1.jpg"
-        },
-        {
-          "imagem": "/images/uploads/f01-1.jpg"
-        },
-        {
-          "imagem": "/images/uploads/f05-1.20-lota-1.jpg"
-        }
-      ],
-      "categorias": [
-        "arquitetura"
-      ],
-      "descricao": "Lota, escritórios e espaço público organizados por um único gesto: a asa. Tudo o que é indústria do pescado vive por baixo; tudo o que é cidade acontece por cima.",
-      "data": "2025-06",
-      "slug": "doca-de-pesca",
-      "local": "matosinhos, porto",
-      "fotografia": "",
-      "disciplina": "design studio 4",
-      "area": "equipamento",
-      "periodo": "2024/2025",
-      "capa": "/images/uploads/lota-maq-bgr.png",
-      "emCurso": false,
-      "colaboracao": "",
-      "orientacao": "",
-      "titulo": "doca de pesca"
     },
     {
       "imagens": [
@@ -76,6 +54,49 @@
       "colaboracao": "",
       "orientacao": "",
       "titulo": "torre residencial, lapa"
+    },
+    {
+      "imagens": [
+        {
+          "imagem": "/images/uploads/f07-serviços-lota-1.jpg"
+        },
+        {
+          "imagem": "/images/uploads/f01-1.jpg"
+        },
+        {
+          "imagem": {
+            "imagem": "/images/uploads/f05-1.20-lota-1.jpg",
+            "x": -0.6784441805225654,
+            "y": 0,
+            "w": 2.3568883610451308,
+            "h": 1,
+            "proporcao": 1
+          }
+        }
+      ],
+      "categorias": [
+        "arquitetura"
+      ],
+      "descricao": "Lota, escritórios e espaço público organizados por um único gesto: a asa. Tudo o que é indústria do pescado vive por baixo; tudo o que é cidade acontece por cima.",
+      "data": "2025-06",
+      "slug": "doca-de-pesca",
+      "local": "matosinhos, porto",
+      "fotografia": "",
+      "disciplina": "design studio 4",
+      "area": "equipamento",
+      "periodo": "2024/2025",
+      "capa": {
+        "imagem": "images/placeholder.svg",
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1,
+        "proporcao": 2
+      },
+      "emCurso": false,
+      "colaboracao": "",
+      "orientacao": "",
+      "titulo": "doca de pesca"
     },
     {
       "imagens": [
