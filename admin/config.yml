@@ -9,8 +9,8 @@ backend:
 
 # Depois de publicado no Netlify, muda este valor para o URL real do site
 # (o painel de "media" e o preview usam-no para mostrar as imagens certas).
-site_url: https://SUBSTITUIR-PELO-TEU-SITE.netlify.app
-display_url: https://SUBSTITUIR-PELO-TEU-SITE.netlify.app
+site_url: https://portfoliotiagovilar.netlify.app
+display_url: https://portfoliotiagovilar.netlify.app
 logo_url: /images/placeholder.svg
 
 media_folder: "images/uploads"
