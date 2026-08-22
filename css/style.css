@@ -199,12 +199,13 @@ img { display: block; max-width: 100%; }
   max-width: none;   /* anula o max-width:100% global, que estragaria a escala */
 }
 
-/* Imagem sem recorte definido dentro de uma caixa de proporcao fixa. */
+/* Imagem ainda sem enquadramento definido no painel: aparece inteira, nunca
+   cortada automaticamente. O corte so acontece se for escolhido no /admin. */
 .recorte__cheia {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .projeto__info {

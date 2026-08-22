@@ -30,11 +30,10 @@ collections:
       - name: "projetos"
         label: "Projetos"
         file: "content/projetos.json"
-        # Um unico ficheiro com a lista de todos os projetos — o site le
-        # content/projetos.json de uma vez (ver js/conteudo.js) e ordena-os
-        # sozinho (em curso primeiro, depois do mais recente ao mais antigo).
-        # Nao e preciso mexer na ordem aqui nem escolher o numero: 01, 02...
-        # e calculado automaticamente a partir da data.
+        # Um unico ficheiro com a lista de todos os projetos. A ordem desta
+        # lista e a ordem exata da home: arrasta os itens para reordenar.
+        # O numero a esquerda (01, 02...) e calculado sozinho — 01 e o projeto
+        # mais antigo, ou seja o ultimo da lista.
         fields:
           - label: "Projetos"
             name: "projetos"

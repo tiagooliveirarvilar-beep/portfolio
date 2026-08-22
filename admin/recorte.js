@@ -1,11 +1,15 @@
-/* Widget "recorte" — escolher uma imagem e decidir que parte dela aparece.
+/* Widget "recorte" — escolher a imagem e decidir exatamente o que aparece.
 
-   O recorte e guardado como fracoes da imagem original (x, y, w, h entre 0 e 1)
-   e nunca se mexe no ficheiro carregado: pode ser refeito as vezes que forem
-   precisas sem perder qualidade, e a foto original fica sempre intacta.
+   O enquadramento e guardado como fracoes da imagem original (x, y, w, h) e o
+   ficheiro carregado nunca e alterado: pode ser refeito as vezes que forem
+   precisas sem perder qualidade.
+
+   w/h podem passar de 1: nesse caso a moldura e MAIOR do que a foto e ve-se a
+   foto inteira, com espaco a volta. E assim que uma foto vertical cabe toda
+   numa capa quadrada sem ficar cortada.
 
    Opcoes do campo em config.yml:
-     forcarQuadrado: true  -> tranca o recorte em quadrado (usado na capa)
+     forcarQuadrado: true  -> a moldura e sempre quadrada (usado na capa)
 */
 (function () {
   var h = window.h;
@@ -16,7 +20,8 @@
     return;
   }
 
-  var LADO_MINIMO = 0.05;
+  var MINIMO = 0.05;
+  var MAXIMO = 5;
 
   function limitar(v, min, max) { return Math.min(max, Math.max(min, v)); }
 
@@ -31,10 +36,10 @@
     valor = valor || {};
     return {
       imagem: valor.imagem || '',
-      x: limitar(num(valor.x, 0), 0, 1),
-      y: limitar(num(valor.y, 0), 0, 1),
-      w: limitar(num(valor.w, 1), LADO_MINIMO, 1),
-      h: limitar(num(valor.h, 1), LADO_MINIMO, 1),
+      x: num(valor.x, 0),
+      y: num(valor.y, 0),
+      w: limitar(num(valor.w, 1), MINIMO, MAXIMO),
+      h: limitar(num(valor.h, 1), MINIMO, MAXIMO),
       proporcao: num(valor.proporcao, 1)
     };
   }
@@ -46,24 +51,19 @@
 
     componentWillUnmount: function () { this.pararArrasto(); },
 
-    /* Quando se escolhe um ficheiro na biblioteca de media, o caminho chega
-       por mediaPaths — e ai que o valor do campo e atualizado. */
     componentDidUpdate: function (propsAnteriores) {
       var props = this.props;
       var caminho = props.mediaPaths && props.mediaPaths.get
-        ? props.mediaPaths.get(props.forID)
-        : null;
+        ? props.mediaPaths.get(props.forID) : null;
       var anterior = propsAnteriores.mediaPaths && propsAnteriores.mediaPaths.get
-        ? propsAnteriores.mediaPaths.get(propsAnteriores.forID)
-        : null;
+        ? propsAnteriores.mediaPaths.get(propsAnteriores.forID) : null;
 
       if (caminho && caminho !== anterior) {
         if (caminho.toJS) caminho = caminho.toJS();
         if (Array.isArray(caminho)) caminho = caminho[0];
         if (caminho && caminho !== this.valor().imagem) {
-          /* Imagem nova: recomeca com a foto inteira. */
-          this.gravar({ imagem: caminho, x: 0, y: 0, w: 1, h: 1, proporcao: 1 });
-          this.setState({ larguraNatural: 0, alturaNatural: 0 });
+          this.props.onChange({ imagem: caminho, x: 0, y: 0, w: 1, h: 1, proporcao: 1 });
+          this.setState({ larguraNatural: 0, alturaNatural: 0, ajustado: false });
         }
       }
     },
@@ -75,14 +75,49 @@
       return !!(campo && campo.get && campo.get('forcarQuadrado'));
     },
 
+    ehQuadrado: function () {
+      if (this.forcaQuadrado()) return true;
+      if (typeof this.state.quadradoLivre === 'boolean') return this.state.quadradoLivre;
+      return Math.abs((this.valor().proporcao || 1) - 1) < 0.02;
+    },
+
+    /* Moldura que mostra a FOTO TODA (pode ser maior do que a foto). */
+    ajusteTotal: function () {
+      var W = this.state.larguraNatural, H = this.state.alturaNatural;
+      if (!this.ehQuadrado() || !W || !H) return { w: 1, h: 1 };
+      var lado = Math.max(W, H);
+      return { w: lado / W, h: lado / H };
+    },
+
+    /* Moldura que PREENCHE por completo, cortando o que sobra. */
+    preenchimento: function () {
+      var W = this.state.larguraNatural, H = this.state.alturaNatural;
+      if (!this.ehQuadrado() || !W || !H) return { w: 1, h: 1 };
+      var lado = Math.min(W, H);
+      return { w: lado / W, h: lado / H };
+    },
+
     gravar: function (novo) {
       var v = normalizar(novo);
       var W = this.state.larguraNatural, H = this.state.alturaNatural;
       v.proporcao = (W && H) ? (v.w * W) / (v.h * H) : 1;
-      v.x = limitar(v.x, 0, 1 - v.w);
-      v.y = limitar(v.y, 0, 1 - v.h);
+      /* w<=1: a moldura anda dentro da foto. w>1: a foto anda dentro da
+         moldura. Os dois casos cabem nestes limites. */
+      v.x = limitar(v.x, Math.min(0, 1 - v.w), Math.max(0, 1 - v.w));
+      v.y = limitar(v.y, Math.min(0, 1 - v.h), Math.max(0, 1 - v.h));
       this.props.onChange(v);
     },
+
+    aplicar: function (medida) {
+      var v = this.valor();
+      this.gravar({
+        imagem: v.imagem, w: medida.w, h: medida.h,
+        x: (1 - medida.w) / 2, y: (1 - medida.h) / 2
+      });
+    },
+
+    verTudo: function (evento) { evento.preventDefault(); this.aplicar(this.ajusteTotal()); },
+    preencher: function (evento) { evento.preventDefault(); this.aplicar(this.preenchimento()); },
 
     aoCarregarImagem: function (evento) {
       var img = evento.target;
@@ -90,50 +125,43 @@
       this.setState(
         { larguraNatural: img.naturalWidth, alturaNatural: img.naturalHeight },
         function () {
-          /* Primeira vez: se o campo e de capa, arranca ja com um quadrado. */
           var v = self.valor();
-          if (self.forcaQuadrado() && v.w === 1 && v.h === 1) self.definirTamanho(1);
-          else self.gravar(v);
+          /* Enquadramento ainda por definir: comeca a mostrar a foto toda,
+             para nada ficar cortado sem ser por escolha. */
+          if (!self.state.ajustado && v.w === 1 && v.h === 1 && !v.x && !v.y) {
+            self.setState({ ajustado: true }, function () { self.aplicar(self.ajusteTotal()); });
+          } else {
+            self.gravar(v);
+          }
         }
       );
     },
 
-    /* tamanho = fracao da largura ocupada pelo recorte. Em quadrado, a altura
-       e calculada para dar o mesmo numero de pixeis dos dois lados. */
     definirTamanho: function (largura) {
       var v = this.valor();
       var W = this.state.larguraNatural, H = this.state.alturaNatural;
-      var w = limitar(largura, LADO_MINIMO, 1);
+      var w = limitar(largura, MINIMO, MAXIMO);
       var alturaNova = v.h;
 
       if (this.ehQuadrado()) {
         if (!W || !H) return;
         alturaNova = (w * W) / H;
-        if (alturaNova > 1) { alturaNova = 1; w = (H / W); }
       }
 
       this.gravar({
-        imagem: v.imagem, w: w, h: limitar(alturaNova, LADO_MINIMO, 1),
-        x: limitar(v.x + (v.w - w) / 2, 0, 1),
-        y: limitar(v.y + (v.h - alturaNova) / 2, 0, 1)
+        imagem: v.imagem, w: w, h: limitar(alturaNova, MINIMO, MAXIMO),
+        x: v.x + (v.w - w) / 2,
+        y: v.y + (v.h - alturaNova) / 2
       });
     },
 
     definirAltura: function (altura) {
       var v = this.valor();
-      var hNova = limitar(altura, LADO_MINIMO, 1);
+      var hNova = limitar(altura, MINIMO, MAXIMO);
       this.gravar({
         imagem: v.imagem, w: v.w, h: hNova,
-        x: v.x, y: limitar(v.y + (v.h - hNova) / 2, 0, 1)
+        x: v.x, y: v.y + (v.h - hNova) / 2
       });
-    },
-
-    ehQuadrado: function () {
-      if (this.forcaQuadrado()) return true;
-      if (typeof this.state.quadradoLivre === 'boolean') return this.state.quadradoLivre;
-      /* Por omissao a preferencia e quadrado; um recorte ja gravado com outra
-         proporcao reabre com a opcao desligada. */
-      return Math.abs((this.valor().proporcao || 1) - 1) < 0.02;
     },
 
     alternarQuadrado: function (evento) {
@@ -144,13 +172,12 @@
       });
     },
 
-    /* --- arrastar o recorte --- */
+    /* --- arrastar --- */
     aoPremir: function (evento) {
       evento.preventDefault();
-      var caixa = this.caixa;
-      if (!caixa) return;
+      if (!this.caixa) return;
       var v = this.valor();
-      var r = caixa.getBoundingClientRect();
+      var r = this.caixa.getBoundingClientRect();
       this.arrasto = {
         xInicial: evento.clientX, yInicial: evento.clientY,
         x: v.x, y: v.y, largura: r.width, altura: r.height
@@ -166,8 +193,8 @@
       var v = this.valor();
       this.gravar({
         imagem: v.imagem, w: v.w, h: v.h,
-        x: limitar(a.x + (evento.clientX - a.xInicial) / a.largura, 0, 1 - v.w),
-        y: limitar(a.y + (evento.clientY - a.yInicial) / a.altura, 0, 1 - v.h)
+        x: a.x + (evento.clientX - a.xInicial) / a.largura,
+        y: a.y + (evento.clientY - a.yInicial) / a.altura
       });
     },
 
@@ -191,7 +218,7 @@
 
     limpar: function (evento) {
       evento.preventDefault();
-      this.setState({ larguraNatural: 0, alturaNatural: 0 });
+      this.setState({ larguraNatural: 0, alturaNatural: 0, ajustado: false });
       this.props.onChange({ imagem: '', x: 0, y: 0, w: 1, h: 1, proporcao: 1 });
     },
 
@@ -206,84 +233,83 @@
       var self = this;
       var v = this.valor();
       var botao = {
-        marginRight: '6px', padding: '6px 10px', cursor: 'pointer',
+        marginRight: '6px', marginTop: '6px', padding: '6px 10px', cursor: 'pointer',
         border: '1px solid #ccc', borderRadius: '4px', background: '#fff'
       };
 
       if (!v.imagem) {
         return h('div', { className: this.props.classNameWrapper },
-          h('button', { style: botao, onClick: this.abrirBiblioteca }, 'Escolher imagem')
-        );
+          h('button', { style: botao, onClick: this.abrirBiblioteca }, 'Escolher imagem'));
       }
 
-      var pct = function (n) { return (n * 100) + '%'; };
+      /* A pre-visualizacao mostra a moldura tal como vai aparecer no site: a
+         foto la dentro, encolhida e deslocada conforme o enquadramento. */
+      var LARGURA = 260;
+      var alturaCaixa = LARGURA / (v.proporcao || 1);
 
       var moldura = h('div', {
         ref: function (el) { self.caixa = el; },
+        onMouseDown: this.aoPremir,
+        title: 'Arrasta para mover a foto dentro da moldura',
         style: {
-          position: 'relative', display: 'inline-block', maxWidth: '100%',
-          userSelect: 'none', lineHeight: 0
+          position: 'relative', overflow: 'hidden',
+          width: LARGURA + 'px', height: alturaCaixa + 'px',
+          border: '1px solid #ccc',
+          background: 'repeating-conic-gradient(#f0f0f0 0% 25%, #fff 0% 50%) 50%/16px 16px',
+          cursor: this.state.aArrastar ? 'grabbing' : 'grab',
+          userSelect: 'none'
         }
-      }, [
-        h('img', {
-          key: 'img',
-          src: this.urlDaImagem(v.imagem),
-          onLoad: this.aoCarregarImagem,
-          draggable: false,
-          style: { display: 'block', maxWidth: '100%', height: 'auto' }
-        }),
-        h('div', {
-          key: 'rect',
-          onMouseDown: this.aoPremir,
-          title: 'Arrasta para escolher a parte da foto que aparece',
-          style: {
-            position: 'absolute',
-            left: pct(v.x), top: pct(v.y), width: pct(v.w), height: pct(v.h),
-            border: '1px solid #fff',
-            boxShadow: '0 0 0 1px rgba(0,0,0,.5), 0 0 0 9999px rgba(0,0,0,.45)',
-            cursor: this.state.aArrastar ? 'grabbing' : 'grab'
-          }
-        })
-      ]);
+      }, h('img', {
+        src: this.urlDaImagem(v.imagem),
+        onLoad: this.aoCarregarImagem,
+        draggable: false,
+        style: {
+          position: 'absolute', maxWidth: 'none',
+          width: (100 / v.w) + '%', height: (100 / v.h) + '%',
+          left: (-v.x * 100 / v.w) + '%', top: (-v.y * 100 / v.h) + '%'
+        }
+      }));
 
-      var linhas = [
-        h('label', { key: 'l1', style: { display: 'block', margin: '10px 0 2px', fontSize: '13px' } },
-          'Tamanho do recorte'),
+      var controlos = [
+        h('div', { key: 'b', style: { marginBottom: '4px' } }, [
+          h('button', { key: 'tudo', style: botao, onClick: this.verTudo }, 'Ver a foto toda'),
+          h('button', { key: 'preencher', style: botao, onClick: this.preencher }, 'Preencher a moldura')
+        ]),
+        h('label', { key: 'l1', style: { display: 'block', margin: '8px 0 2px', fontSize: '13px' } },
+          'Aproximar / afastar'),
         h('input', {
-          key: 'tamanho', type: 'range', min: 5, max: 100, step: 1,
+          key: 'tamanho', type: 'range', min: 5, max: 300, step: 1,
           value: Math.round(v.w * 100),
           onChange: function (e) { self.definirTamanho(Number(e.target.value) / 100); },
-          style: { width: '100%' }
+          style: { width: LARGURA + 'px' }
         })
       ];
 
       if (!this.forcaQuadrado()) {
-        linhas.push(h('label', { key: 'l2', style: { display: 'block', margin: '10px 0', fontSize: '13px' } }, [
+        controlos.push(h('label', { key: 'l2', style: { display: 'block', margin: '8px 0', fontSize: '13px' } }, [
           h('input', {
-            key: 'chk', type: 'checkbox',
-            checked: this.ehQuadrado(),
-            onChange: this.alternarQuadrado,
-            style: { marginRight: '6px' }
+            key: 'chk', type: 'checkbox', checked: this.ehQuadrado(),
+            onChange: this.alternarQuadrado, style: { marginRight: '6px' }
           }),
           'Manter quadrado'
         ]));
 
         if (!this.ehQuadrado()) {
-          linhas.push(h('label', { key: 'l3', style: { display: 'block', margin: '4px 0 2px', fontSize: '13px' } },
-            'Altura do recorte'));
-          linhas.push(h('input', {
-            key: 'altura', type: 'range', min: 5, max: 100, step: 1,
+          controlos.push(h('label', { key: 'l3', style: { display: 'block', margin: '4px 0 2px', fontSize: '13px' } },
+            'Altura da moldura'));
+          controlos.push(h('input', {
+            key: 'altura', type: 'range', min: 5, max: 300, step: 1,
             value: Math.round(v.h * 100),
             onChange: function (e) { self.definirAltura(Number(e.target.value) / 100); },
-            style: { width: '100%' }
+            style: { width: LARGURA + 'px' }
           }));
         }
       }
 
       return h('div', { className: this.props.classNameWrapper }, [
-        h('div', { key: 'moldura' }, moldura),
-        h('div', { key: 'controlos' }, linhas),
-        h('div', { key: 'botoes', style: { marginTop: '10px' } }, [
+        h('div', { key: 'm' }, moldura),
+        h('div', { key: 'c' }, controlos),
+        h('div', { key: 'f', style: { marginTop: '6px' } }, [
           h('button', { key: 'trocar', style: botao, onClick: this.abrirBiblioteca }, 'Trocar imagem'),
           h('button', { key: 'limpar', style: botao, onClick: this.limpar }, 'Remover')
         ])

@@ -22,28 +22,28 @@ function criarSlug(texto) {
     .replace(/^-|-$/g, '');
 }
 
-/* Fluxo unico e cronologico: em curso primeiro, depois do mais recente
-   para o mais antigo. O numero (01, 02, ...) vem desta ordem. */
-function ordenarProjetos(lista) {
-  return lista.slice().sort((a, b) => {
-    if (a.emCurso !== b.emCurso) return a.emCurso ? -1 : 1;
-    return String(b.data || '').localeCompare(String(a.data || ''));
-  });
-}
-
 async function carregarJSON(caminho) {
   const resposta = await fetch(caminho, { cache: 'no-cache' });
   if (!resposta.ok) throw new Error(`Nao consegui ler ${caminho}`);
   return resposta.json();
 }
 
+/* A ordem da home e exatamente a ordem da lista no painel: o que estiver em
+   primeiro lugar no /admin aparece em primeiro lugar no site. Nada e
+   reordenado automaticamente.
+
+   O numero e o numero do projeto na carreira: 01 e o mais antigo e o numero
+   mais alto e o mais recente. Como a lista esta pelo mais recente primeiro,
+   a numeracao corre ao contrario da posicao. */
 async function carregarProjetos() {
   const dados = await carregarJSON('content/projetos.json');
-  const lista = ordenarProjetos(dados.projetos || []);
+  const lista = dados.projetos || [];
+  const total = lista.length;
+
   return lista.map((projeto, i) => ({
     ...projeto,
     slug: projeto.slug || criarSlug(projeto.titulo),
-    numero: String(i + 1).padStart(2, '0'),
+    numero: String(total - i).padStart(2, '0'),
     dataTexto: formatarData(projeto)
   }));
 }
@@ -58,13 +58,16 @@ function fonteImagem(valor) {
   return typeof valor === 'string' ? valor : (valor.imagem || '');
 }
 
+/* w/h acima de 1 significam que a moldura e MAIOR do que a foto: ve-se a foto
+   toda, com espaco a volta. E assim que uma foto vertical cabe inteira numa
+   capa quadrada, sem ser cortada. */
 function recorteDe(valor) {
   if (!valor || typeof valor === 'string') return null;
   const w = Number(valor.w), h = Number(valor.h);
-  if (!(w > 0 && w <= 1 && h > 0 && h <= 1)) return null;
+  if (!(w > 0 && h > 0)) return null;
   const x = Number(valor.x) || 0;
   const y = Number(valor.y) || 0;
-  if (w === 1 && h === 1 && !x && !y) return null;   // foto inteira
+  if (w === 1 && h === 1 && !x && !y) return null;   // enquadramento por definir
   return { x, y, w, h, proporcao: Number(valor.proporcao) || 1 };
 }
 
