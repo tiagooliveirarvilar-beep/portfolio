@@ -191,7 +191,10 @@ img { display: block; max-width: 100%; }
   max-width: 34vw;
 }
 
+/* Sao <span> dentro do <a>, por isso precisam mesmo de display:block para a
+   data cair por baixo do nome (e para o margin-top pegar). */
 .projeto__nome {
+  display: block;
   font-size: var(--nome-size);
   font-weight: 600;
   line-height: 1.15;
@@ -200,6 +203,7 @@ img { display: block; max-width: 100%; }
 }
 
 .projeto__data {
+  display: block;
   font-size: var(--data-size);
   color: var(--gray);
   line-height: 1.1;
