@@ -12,7 +12,7 @@
 <body>
 
 <!-- Titulo verdadeiramente fixo: nunca se move enquanto as imagens passam.
-     Tambem serve de regresso a home (unica navegacao do site). -->
+     Tambem serve de regresso a home. -->
 <a class="projeto-titulo" id="titulo" href="index.html"></a>
 
 <div class="pagina-projeto">
@@ -24,7 +24,25 @@
 
 <div class="lightbox" id="lightbox"><img alt=""></div>
 
+<!-- Marca fixa: presente em todas as paginas, sempre a frente -->
+<button type="button" class="marca" id="marca" aria-expanded="false" aria-controls="perfil">Tiago Vilar</button>
+
+<section class="perfil" id="perfil" hidden>
+  <img class="perfil__foto" id="sobre-foto" alt="" src="images/retrato.svg">
+  <div class="perfil__conteudo">
+    <div class="perfil__contacto">
+      <p class="etiqueta">contacto</p>
+      <ul id="contacto-lista"></ul>
+    </div>
+    <div class="perfil__sobre">
+      <p class="etiqueta">sobre mim</p>
+      <p id="sobre-texto"></p>
+    </div>
+  </div>
+</section>
+
 <script src="js/conteudo.js"></script>
 <script src="js/projeto.js"></script>
+<script src="js/perfil.js"></script>
 </body>
 </html>

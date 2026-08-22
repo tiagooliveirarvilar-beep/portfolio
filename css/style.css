@@ -9,15 +9,21 @@
   --bg: #FAFAF8;
   --ink: #161514;
   --gray: #8a8578;
-  --wine: #852321;
+  --destaque: #ad0000;   /* usado SO no hover da imagem de um projeto */
 
   --margem: 1cm;
 
-  /* Home */
+  /* Home.
+     --foto-base e a medida original; a foto mostra-se a 150% dessa base e o
+     espaco livre a volta e metade do que era, por isso a altura de cada
+     projeto deixa de ser 100vh e passa a ser foto + espaco. */
+  --foto-base: min(32vw, 300px);
+  --foto-home: min(calc(var(--foto-base) * 1.5), 70vh);
+  --espaco-home: calc((100vh - var(--foto-base)) / 2);
+
   --num-size: clamp(30px, 4.6vw, 46px);
   --nome-size: clamp(14px, 1.6vw, 17px);
-  --data-size: clamp(9px, 1vw, 11px);
-  --foto-home: min(32vw, 300px);
+  --data-size: clamp(8px, 0.85vw, 10px);
 
   /* Pagina de projeto */
   --titulo-fixo-size: clamp(12px, 1.3vw, 14px);
@@ -27,7 +33,8 @@
   --img-espaco: 48px;
   --ficha-size: clamp(10px, 1.1vw, 12px);
 
-  /* Sobre / Contacto */
+  /* Marca fixa, Sobre e Contacto */
+  --marca-size: clamp(9px, 0.95vw, 12px);
   --sobre-size: clamp(8px, 0.9vw, 12px);
   --contacto-size: clamp(9.5px, 1.05vw, 13px);
   --etiqueta-size: clamp(8px, 0.85vw, 11px);
@@ -47,6 +54,8 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+body.sem-scroll { overflow: hidden; }
+
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
 
@@ -61,7 +70,83 @@ img { display: block; max-width: 100%; }
 }
 
 /* ==========================================================================
-   HOME — lista cronologica, um projeto por ecra
+   MARCA — "Tiago Vilar" fixo no canto inferior esquerdo, sempre a frente,
+   independente do scroll. E o unico botao de navegacao do site: abre e fecha
+   o ecra de Sobre Mim + Contacto.
+   ========================================================================== */
+
+.marca {
+  position: fixed;
+  left: var(--margem);
+  bottom: var(--margem);
+  z-index: 60;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: var(--marca-size);
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* ==========================================================================
+   PERFIL — Sobre Mim + Contacto num so ecra, sem scroll, fora da cronologia.
+   Aparece por cima de tudo quando se carrega na marca.
+   ========================================================================== */
+
+.perfil {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.perfil[hidden] { display: none; }
+
+/* Foto de retrato mesmo por cima da marca, na mesma coluna de 1cm. */
+.perfil__foto {
+  position: absolute;
+  left: var(--margem);
+  bottom: calc(var(--margem) + 2.4em);
+  width: 75px;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  background: #C9C4B8;
+}
+
+/* Contacto por cima, texto do Sobre Mim em baixo — ambos encostados ao fundo,
+   como nos dois ecras aprovados. */
+.perfil__conteudo {
+  position: absolute;
+  left: 44%;
+  right: var(--margem);
+  bottom: var(--margem);
+  display: flex;
+  flex-direction: column;
+  gap: 2.4em;
+}
+
+.perfil__contacto { text-align: right; }
+.perfil__contacto ul { list-style: none; margin: 0; padding: 0; }
+
+.perfil__contacto li {
+  font-size: var(--contacto-size);
+  line-height: 1.5;
+}
+
+.perfil__sobre p { margin: 0; }
+
+.perfil__sobre p:last-child {
+  font-size: var(--sobre-size);
+  line-height: 1.55;
+}
+
+/* ==========================================================================
+   HOME — lista cronologica de projetos
    Tres elementos posicionados de forma independente (nao grid), para a foto
    ficar no centro real do ecra mesmo com nomes de larguras diferentes.
    ========================================================================== */
@@ -69,8 +154,7 @@ img { display: block; max-width: 100%; }
 .projeto {
   position: relative;
   display: block;
-  height: 100vh;
-  height: 100svh;
+  height: calc(var(--foto-home) + var(--espaco-home));
   overflow: hidden;
 }
 
@@ -82,8 +166,9 @@ img { display: block; max-width: 100%; }
   font-size: var(--num-size);
   font-weight: 700;
   line-height: 1;
-  color: var(--ink);           /* mantem-se sempre preto, tambem no hover */
+  color: var(--ink);
   font-variant-numeric: tabular-nums;
+  transition: color .18s ease;
 }
 
 .projeto__foto {
@@ -121,72 +206,12 @@ img { display: block; max-width: 100%; }
   margin-top: 1px;             /* quase coladas, por decisao de design */
 }
 
-.projeto:hover .projeto__nome,
-.projeto:focus-visible .projeto__nome { color: var(--wine); }
+/* Vermelho so quando o rato esta mesmo por cima da imagem daquele projeto —
+   em mais lado nenhum. Numero e nome mudam os dois. */
+.projeto:has(.projeto__foto:hover) .projeto__nome,
+.projeto:has(.projeto__foto:hover) .projeto__num { color: var(--destaque); }
 
 .projeto:focus-visible { outline: none; }
-
-/* ==========================================================================
-   SOBRE MIM — um ecra, sem scroll, tudo alinhado ao fundo
-   ========================================================================== */
-
-.sobre {
-  position: relative;
-  height: 100vh;
-  height: 100svh;
-  overflow: hidden;
-}
-
-.sobre__foto {
-  position: absolute;
-  left: var(--margem);
-  bottom: var(--margem);
-  width: 75px;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  background: #C9C4B8;
-}
-
-.sobre__texto {
-  position: absolute;
-  left: 44%;
-  right: var(--margem);
-  bottom: var(--margem);
-}
-
-.sobre__texto p {
-  margin: 0;
-  font-size: var(--sobre-size);
-  line-height: 1.55;
-}
-
-/* ==========================================================================
-   CONTACTO — um ecra, so a lista, canto inferior direito
-   ========================================================================== */
-
-.contacto {
-  position: relative;
-  height: 100vh;
-  height: 100svh;
-  overflow: hidden;
-}
-
-.contacto__lista {
-  position: absolute;
-  right: var(--margem);
-  bottom: var(--margem);
-  text-align: right;
-}
-
-.contacto__lista ul { list-style: none; margin: 0; padding: 0; }
-
-.contacto__lista li {
-  font-size: var(--contacto-size);
-  line-height: 1.5;
-}
-
-.contacto__lista a { transition: color .18s ease; }
-.contacto__lista a:hover { color: var(--wine); }
 
 /* ==========================================================================
    PAGINA DE PROJETO — scroll normal da pagina, titulo verdadeiramente fixo
@@ -203,10 +228,7 @@ img { display: block; max-width: 100%; }
   font-weight: 600;
   text-transform: lowercase;
   z-index: 5;
-  transition: color .18s ease;
 }
-
-.projeto-titulo:hover { color: var(--wine); }
 
 .conteudo {
   max-width: var(--conteudo-max);
@@ -266,7 +288,7 @@ img { display: block; max-width: 100%; }
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 50;
+  z-index: 70;
   cursor: zoom-out;
   padding: var(--margem);
 }
@@ -286,14 +308,14 @@ img { display: block; max-width: 100%; }
 @media (max-width: 640px) {
   :root {
     --margem: .6cm;
-    --foto-home: 46vw;
+    --foto-base: 40vw;
     --conteudo-pad: 24px;
     --img-largura: 78%;
     --sobre-size: 10px;
   }
 
   .projeto__info { max-width: 26vw; }
-  .sobre__texto { left: 30%; }
+  .perfil__conteudo { left: 30%; }
   .ficha { grid-template-columns: 1fr; gap: 24px; }
   .ficha h2 { margin-bottom: 0; }
 }

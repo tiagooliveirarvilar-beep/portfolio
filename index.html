@@ -12,27 +12,29 @@
 </head>
 <body>
 
-<!-- Projetos: um ecra inteiro por projeto, mais recente primeiro -->
+<!-- Projetos: cronologia, mais recente primeiro -->
 <main id="projetos"></main>
 
-<!-- Sobre mim -->
-<section class="sobre" id="sobre">
-  <img class="sobre__foto" id="sobre-foto" alt="" src="images/retrato.svg">
-  <div class="sobre__texto">
-    <p class="etiqueta">sobre mim</p>
-    <p id="sobre-texto"></p>
-  </div>
-</section>
+<!-- Marca fixa: unica navegacao do site, abre o ecra de Sobre Mim + Contacto -->
+<button type="button" class="marca" id="marca" aria-expanded="false" aria-controls="perfil">Tiago Vilar</button>
 
-<!-- Contacto -->
-<section class="contacto" id="contacto">
-  <div class="contacto__lista">
-    <p class="etiqueta">contacto</p>
-    <ul id="contacto-lista"></ul>
+<!-- Sobre Mim + Contacto: um ecra sem scroll, fora da cronologia -->
+<section class="perfil" id="perfil" hidden>
+  <img class="perfil__foto" id="sobre-foto" alt="" src="images/retrato.svg">
+  <div class="perfil__conteudo">
+    <div class="perfil__contacto">
+      <p class="etiqueta">contacto</p>
+      <ul id="contacto-lista"></ul>
+    </div>
+    <div class="perfil__sobre">
+      <p class="etiqueta">sobre mim</p>
+      <p id="sobre-texto"></p>
+    </div>
   </div>
 </section>
 
 <script src="js/conteudo.js"></script>
 <script src="js/home.js"></script>
+<script src="js/perfil.js"></script>
 </body>
 </html>

@@ -26,13 +26,13 @@
     ['local', projeto.local],
     ['data', projeto.periodo || projeto.dataTexto],
     ['disciplina', projeto.disciplina],
-    ['area', projeto.area]
+    ['área', projeto.area]
   ].filter(([, valor]) => valor);
 
   const creditos = [
-    ['colaboracao', projeto.colaboracao],
+    ['colaboração', projeto.colaboracao],
     ['fotografia', projeto.fotografia],
-    ['orientacao', projeto.orientacao]
+    ['orientação', projeto.orientacao]
   ].filter(([, valor]) => valor);
 
   const coluna = pares => pares.length
@@ -40,7 +40,7 @@
     : '<div></div>';
 
   document.getElementById('ficha').innerHTML = `
-    <h2>ficha tecnica</h2>
+    <h2>ficha técnica</h2>
     <p>${projeto.descricao || ''}</p>
     ${coluna(dados)}
     ${coluna(creditos)}
