@@ -86,12 +86,12 @@
       "area": "equipamento",
       "periodo": "2024/2025",
       "capa": {
-        "imagem": "images/placeholder.svg",
+        "imagem": "",
         "x": 0,
         "y": 0,
         "w": 1,
         "h": 1,
-        "proporcao": 2
+        "proporcao": 1
       },
       "emCurso": false,
       "colaboracao": "",
