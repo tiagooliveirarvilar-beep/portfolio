@@ -7,14 +7,16 @@
     const projetos = await carregarProjetos();
 
     alvo.innerHTML = projetos.map(p => `
-      <a class="projeto" href="projeto.html?p=${encodeURIComponent(p.slug)}">
+      <div class="projeto">
         <span class="projeto__num">${p.numero}</span>
-        <img class="projeto__foto" src="${p.capa || 'images/placeholder.svg'}" alt="${p.titulo}">
+        <a class="projeto__link" href="projeto.html?p=${encodeURIComponent(p.slug)}" aria-label="${p.titulo}">
+          <img class="projeto__foto" src="${p.capa || 'images/placeholder.svg'}" alt="${p.titulo}">
+        </a>
         <span class="projeto__info">
           <span class="projeto__nome">${p.titulo}</span>
           <span class="projeto__data">${p.dataTexto}</span>
         </span>
-      </a>
+      </div>
     `).join('');
   } catch (erro) {
     console.error(erro);

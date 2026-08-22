@@ -171,12 +171,19 @@ img { display: block; max-width: 100%; }
   transition: color .18s ease;
 }
 
-.projeto__foto {
+/* So a fotografia e clicavel: e o unico elemento dentro do <a>. O numero e o
+   nome sao texto solto, nao levam a lado nenhum. */
+.projeto__link {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   width: var(--foto-home);
+  display: block;
+}
+
+.projeto__foto {
+  width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   background: #C9C4B8;
@@ -214,8 +221,6 @@ img { display: block; max-width: 100%; }
    em mais lado nenhum. Numero e nome mudam os dois. */
 .projeto:has(.projeto__foto:hover) .projeto__nome,
 .projeto:has(.projeto__foto:hover) .projeto__num { color: var(--destaque); }
-
-.projeto:focus-visible { outline: none; }
 
 /* ==========================================================================
    PAGINA DE PROJETO — scroll normal da pagina, titulo verdadeiramente fixo
