@@ -144,10 +144,10 @@
       "periodo": "2025",
       "capa": {
         "imagem": "/images/uploads/lapa-bgr.png",
-        "x": 0,
-        "y": 0.125,
-        "w": 1,
-        "h": 0.75,
+        "x": -0.16666666666666663,
+        "y": 0,
+        "w": 1.3333333333333333,
+        "h": 1,
         "proporcao": 1
       },
       "emCurso": false,
