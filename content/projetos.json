@@ -61,6 +61,30 @@
         }
       ],
       "categorias": [
+        "arquitetura académica"
+      ],
+      "descricao": "Torre residencial sobre um podium baixo de escritórios. Tipologias de estúdio a T3, num módulo de dois pisos com pé-direito duplo.",
+      "data": "2024-06",
+      "slug": "torre-residencial-lapa",
+      "local": "lapa, porto",
+      "fotografia": "",
+      "disciplina": "Projecto 3",
+      "area": "habitação",
+      "periodo": "2023/2024",
+      "capa": "images/placeholder.svg",
+      "emCurso": false,
+      "colaboracao": "",
+      "orientacao": "",
+      "titulo": "torre residencial, lapa"
+    },
+    {
+      "imagens": [
+        {
+          "imagem": "images/placeholder.svg",
+          "legenda": ""
+        }
+      ],
+      "categorias": [
         "arquitetura"
       ],
       "descricao": "Reabilitação de uma casa burguesa do século XIX, na Rua de Brito Capelo, transformada em escola.",
@@ -71,7 +95,14 @@
       "disciplina": "arquitetura",
       "area": "reabilitação",
       "periodo": "2024/2025",
-      "capa": "/images/uploads/15-1.jpg",
+      "capa": {
+        "imagem": "/images/uploads/15-1.jpg",
+        "x": 0.1464211464211464,
+        "y": 0,
+        "w": 0.7071577071577072,
+        "h": 1,
+        "proporcao": 1
+      },
       "emCurso": false,
       "colaboracao": "Ana Soares, Giulio Schiavon, Leonor Ribeiro, Mariana Reina, Raquel Guedes, Tiago Vilar",
       "orientacao": "",
@@ -197,30 +228,6 @@
       "colaboracao": "",
       "orientacao": "",
       "titulo": "missão país"
-    },
-    {
-      "imagens": [
-        {
-          "imagem": "images/placeholder.svg",
-          "legenda": ""
-        }
-      ],
-      "categorias": [
-        "arquitetura académica"
-      ],
-      "descricao": "Torre residencial sobre um podium baixo de escritórios. Tipologias de estúdio a T3, num módulo de dois pisos com pé-direito duplo.",
-      "data": "2024-06",
-      "slug": "torre-residencial-lapa",
-      "local": "porto",
-      "fotografia": "",
-      "disciplina": "design studio 3",
-      "area": "habitação",
-      "periodo": "2023/2024",
-      "capa": "images/placeholder.svg",
-      "emCurso": false,
-      "colaboracao": "",
-      "orientacao": "",
-      "titulo": "torre residencial, lapa"
     },
     {
       "imagens": [
