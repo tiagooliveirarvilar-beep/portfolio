@@ -18,8 +18,8 @@
 
   /* Todas as imagens saem com a mesma largura; so a altura acompanha o
      recorte escolhido no painel. */
-  document.getElementById('galeria').innerHTML = imagens.map(img => `
-    <figure>
+  document.getElementById('galeria').innerHTML = imagens.map((img, i) => `
+    <figure data-indice="${i}">
       ${htmlImagem(img.imagem, 'galeria__foto', projeto.titulo)}
       ${img.legenda ? `<figcaption>${img.legenda}</figcaption>` : ''}
     </figure>
@@ -50,18 +50,50 @@
     ${coluna(creditos)}
   `;
 
-  /* Lightbox */
+  /* Ampliacao: mostra exatamente o mesmo recorte que esta na pagina, so
+     maior — nunca a fotografia inteira. */
   const lightbox = document.getElementById('lightbox');
-  const grande = lightbox.querySelector('img');
+  const caixaGrande = lightbox.querySelector('.lightbox__foto');
 
   document.getElementById('galeria').addEventListener('click', evento => {
-    if (evento.target.tagName !== 'IMG') return;
-    grande.src = evento.target.src;
+    const figura = evento.target.closest('figure');
+    if (!figura) return;
+
+    const valor = imagens[Number(figura.dataset.indice)].imagem;
+    const src = fonteImagem(valor);
+    if (!src) return;
+
+    const r = recorteDe(valor);
+    const proporcao = r ? r.proporcao : 0;
+
+    /* O tamanho e calculado aqui porque so agora se sabe a proporcao do
+       recorte: escolhe-se o maior que caiba no ecra sem cortar nada. */
+    const margem = 40;
+    const dispW = window.innerWidth - margem * 2;
+    const dispH = window.innerHeight - margem * 2;
+
+    if (proporcao > 0) {
+      const largura = Math.min(dispW, dispH * proporcao);
+      caixaGrande.style.width = largura + 'px';
+      caixaGrande.style.height = (largura / proporcao) + 'px';
+      caixaGrande.innerHTML = `<img src="${src}" alt="" style="${estiloRecorte(r)}">`;
+    } else {
+      /* Imagem sem recorte definido: mostra-se inteira, encaixada no ecra. */
+      caixaGrande.style.width = dispW + 'px';
+      caixaGrande.style.height = dispH + 'px';
+      caixaGrande.innerHTML = `<img src="${src}" alt="" class="recorte__cheia">`;
+    }
+
     lightbox.classList.add('aberta');
   });
 
-  lightbox.addEventListener('click', () => lightbox.classList.remove('aberta'));
+  function fecharAmpliacao() {
+    lightbox.classList.remove('aberta');
+    caixaGrande.innerHTML = '';
+  }
+
+  lightbox.addEventListener('click', fecharAmpliacao);
   document.addEventListener('keydown', evento => {
-    if (evento.key === 'Escape') lightbox.classList.remove('aberta');
+    if (evento.key === 'Escape') fecharAmpliacao();
   });
 })();

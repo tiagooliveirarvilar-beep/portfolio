@@ -71,9 +71,20 @@ function recorteDe(valor) {
   return { x, y, w, h, proporcao: Number(valor.proporcao) || 1 };
 }
 
-/* Constroi a imagem ja recortada. A caixa exterior fixa a proporcao e a imagem
-   la dentro e ampliada e deslocada para so se ver o pedaco escolhido —
-   sem nunca deformar a foto.
+/* Posiciona a foto dentro da caixa de recorte.
+
+   A LARGURA acompanha a caixa, a ALTURA fica automatica, e o deslocamento e
+   feito por transform — cujas percentagens contam a partir da propria
+   imagem, nao da caixa. Assim a foto mantem SEMPRE a sua proporcao natural:
+   nunca pode aparecer esticada ou espalmada, mesmo que o valor de proporcao
+   guardado esteja errado (nesse caso ve-se um pedaco maior ou menor do que
+   o escolhido, mas a foto em si nunca deforma). */
+function estiloRecorte(r) {
+  return `left:0;top:0;width:${100 / r.w}%;height:auto;` +
+         `transform:translate(${-r.x * 100}%, ${-r.y * 100}%)`;
+}
+
+/* Constroi a imagem ja recortada.
 
    Nunca ha placeholder: se ainda nao existe imagem, a caixa fica so em
    branco (cor de fundo do site), do tamanho certo, sem <img> nenhuma. */
@@ -95,10 +106,7 @@ function htmlImagem(valor, classe, alt, proporcaoFixa) {
   }
 
   const proporcao = proporcaoFixa || r.proporcao;
-  const caixa = `aspect-ratio:${proporcao}`;
-  const imagem = `width:${100 / r.w}%;height:${100 / r.h}%;` +
-                 `left:${-r.x * 100 / r.w}%;top:${-r.y * 100 / r.h}%`;
 
-  return `<span class="recorte ${classe}" style="${caixa}">` +
-         `<img src="${src}" alt="${alt}" style="${imagem}"></span>`;
+  return `<span class="recorte ${classe}" style="aspect-ratio:${proporcao}">` +
+         `<img src="${src}" alt="${alt}" style="${estiloRecorte(r)}"></span>`;
 }

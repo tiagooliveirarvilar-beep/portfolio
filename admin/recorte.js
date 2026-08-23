@@ -178,7 +178,12 @@
     gravar: function (novo) {
       var v = normalizar(novo);
       var W = this.state.larguraNatural, H = this.state.alturaNatural;
-      v.proporcao = (W && H) ? (v.w * W) / (v.h * H) : 1;
+      /* Se as medidas da foto ainda nao sao conhecidas (imagem por carregar),
+         mantem-se a proporcao ja guardada em vez de a substituir por 1 — que
+         era uma forma silenciosa de estragar um recorte correto. */
+      v.proporcao = (W && H)
+        ? (v.w * W) / (v.h * H)
+        : (normalizar(this.props.value).proporcao || 1);
       /* Sem limite apertado (o retangulo pode sair da foto de propósito),
          so um travao contra arrastos absurdos para fora da janela. */
       v.x = limitar(v.x, -MAXIMO, MAXIMO);
@@ -370,8 +375,12 @@
         draggable: false,
         style: {
           position: 'absolute', maxWidth: 'none',
-          width: (100 / v.w) + '%', height: (100 / v.h) + '%',
-          left: (-v.x * 100 / v.w) + '%', top: (-v.y * 100 / v.h) + '%'
+          /* Largura acompanha a caixa, altura automatica e deslocamento por
+             transform (percentagens da propria imagem): assim a foto nunca
+             pode aparecer esticada nem espalmada. */
+          left: 0, top: 0,
+          width: (100 / v.w) + '%', height: 'auto',
+          transform: 'translate(' + (-v.x * 100) + '%, ' + (-v.y * 100) + '%)'
         }
       }));
     },
@@ -524,8 +533,12 @@
         src: String(asset),
         style: {
           position: 'absolute', maxWidth: 'none',
-          width: (100 / v.w) + '%', height: (100 / v.h) + '%',
-          left: (-v.x * 100 / v.w) + '%', top: (-v.y * 100 / v.h) + '%'
+          /* Largura acompanha a caixa, altura automatica e deslocamento por
+             transform (percentagens da propria imagem): assim a foto nunca
+             pode aparecer esticada nem espalmada. */
+          left: 0, top: 0,
+          width: (100 / v.w) + '%', height: 'auto',
+          transform: 'translate(' + (-v.x * 100) + '%, ' + (-v.y * 100) + '%)'
         }
       }));
     }
