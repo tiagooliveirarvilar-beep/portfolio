@@ -183,11 +183,29 @@
       var self = this;
       return function (evento) {
         evento.preventDefault();
-        self.setState({
-          indiceEditar: indice, larguraNatural: 0, alturaNatural: 0,
+        var dispo = {
           dispoW: Math.max(240, window.innerWidth - MARGEM * 2 - 60),
           dispoH: Math.max(240, window.innerHeight - MARGEM * 2 - 150)
-        });
+        };
+
+        /* Medir a foto ANTES de abrir. Sem as medidas reais, disposicao()
+           cai num quadrado por omissao e a foto abria deformada ate o load
+           chegar — era isto que se via como "foto esticada". */
+        var lista = self.lista();
+        var caminho = lista[indice] ? lista[indice].imagem.imagem : '';
+        var medidor = new Image();
+        medidor.onload = function () {
+          self.setState(Object.assign({
+            indiceEditar: indice,
+            larguraNatural: medidor.naturalWidth,
+            alturaNatural: medidor.naturalHeight
+          }, dispo));
+        };
+        medidor.onerror = function () {
+          self.setState(Object.assign({ indiceEditar: indice, larguraNatural: 0, alturaNatural: 0 }, dispo));
+        };
+        medidor.src = self.urlDaImagem(caminho);
+
         window.addEventListener('keydown', self.aoTeclar);
       };
     },
@@ -466,16 +484,19 @@
       var palco = h('div', {
         style: { position: 'relative', width: d.palcoW + 'px', height: d.palcoH + 'px', userSelect: 'none', margin: '0 auto' }
       }, [
+        /* So a LARGURA e imposta; a altura fica automatica. Assim a foto
+           mantem sempre a proporcao natural, aconteca o que acontecer ao
+           resto do estado — nunca pode esticar nem espalmar. */
         h('img', {
           key: 'foto', src: this.urlDaImagem(v.imagem), onLoad: this.aoCarregarImagem, draggable: false,
-          style: { position: 'absolute', left: d.fotoX, top: d.fotoY, width: d.fotoW + 'px', height: d.fotoH + 'px', opacity: 0.3 }
+          style: { position: 'absolute', left: d.fotoX, top: d.fotoY, width: d.fotoW + 'px', height: 'auto', maxWidth: 'none', opacity: 0.3 }
         }),
         h('div', {
           key: 'janela',
           style: { position: 'absolute', left: retX, top: retY, width: retW, height: retH, overflow: 'hidden', boxShadow: '0 0 0 2px #ad0000' }
         }, h('img', {
           src: this.urlDaImagem(v.imagem), draggable: false,
-          style: { position: 'absolute', left: d.fotoX - retX, top: d.fotoY - retY, width: d.fotoW + 'px', height: d.fotoH + 'px' }
+          style: { position: 'absolute', left: d.fotoX - retX, top: d.fotoY - retY, width: d.fotoW + 'px', height: 'auto', maxWidth: 'none' }
         })),
         h('div', {
           key: 'corpo', onMouseDown: this.aoPremirCorpo,

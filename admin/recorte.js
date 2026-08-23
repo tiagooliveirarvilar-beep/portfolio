@@ -273,11 +273,27 @@
       evento.preventDefault();
       /* A foto ocupa o maximo que couber na janela do browser, deixando
          espaco para a margem de folga e para a barra de botoes. */
-      this.setState({
-        aEditar: true,
+      var self = this;
+      var dispo = {
         dispoW: Math.max(240, window.innerWidth - MARGEM * 2 - 60),
         dispoH: Math.max(240, window.innerHeight - MARGEM * 2 - 150)
-      });
+      };
+
+      /* Medir a foto ANTES de abrir. Sem as medidas reais, disposicao() cai
+         num quadrado por omissao e a foto abria deformada ate o load chegar. */
+      var medidor = new Image();
+      medidor.onload = function () {
+        self.setState(Object.assign({
+          aEditar: true,
+          larguraNatural: medidor.naturalWidth,
+          alturaNatural: medidor.naturalHeight
+        }, dispo));
+      };
+      medidor.onerror = function () {
+        self.setState(Object.assign({ aEditar: true }, dispo));
+      };
+      medidor.src = this.urlDaImagem(this.valor().imagem);
+
       window.addEventListener('keydown', this.aoTeclar);
     },
 
@@ -539,7 +555,9 @@
           draggable: false,
           style: {
             position: 'absolute', left: d.fotoX, top: d.fotoY,
-            width: d.fotoW + 'px', height: d.fotoH + 'px', opacity: 0.3
+            /* So a LARGURA e imposta; a altura fica automatica. Assim a foto
+               mantem sempre a proporcao natural — nunca pode esticar. */
+            width: d.fotoW + 'px', height: 'auto', maxWidth: 'none', opacity: 0.3
           }
         }),
         /* A mesma foto a plena luz, mas so dentro do retangulo. */
@@ -554,7 +572,7 @@
           draggable: false,
           style: {
             position: 'absolute', left: d.fotoX - retX, top: d.fotoY - retY,
-            width: d.fotoW + 'px', height: d.fotoH + 'px'
+            width: d.fotoW + 'px', height: 'auto', maxWidth: 'none'
           }
         })),
         h('div', {
