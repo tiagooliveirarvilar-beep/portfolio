@@ -160,6 +160,17 @@
             "proporcao": 1.3333333333333333
           },
           "legenda": ""
+        },
+        {
+          "imagem": {
+            "imagem": "images/uploads/gemini_generated_image_zgsqodzgsqodzgsq-r1787525464716.png",
+            "x": 0,
+            "y": 0.29166666666666663,
+            "w": 1.001713306681896,
+            "h": 0.43365695792880266,
+            "proporcao": 3.272388059701492
+          },
+          "legenda": ""
         }
       ],
       "descricao": "My core concept is the wing. It is the common\nelement throughout all the spaces in my project. It\norganizes the program, guides circulation, and is the\ngesture that structures the site. It is both a boundary\nand a connection. It is the backbone of the project.\nEverything located beneath the wing is related\nto the Fish Industry. Everything that happens\nabove the wing connects directly to the city.",
