@@ -1,0 +1,23 @@
+{
+  "imagens": [],
+  "descricao": "Investigação sobre a vida e a obra do arquiteto Alberto Ponis, com consulta prevista ao Archivio Ponis Zalaffi, em Palau, Sardenha.",
+  "data": "2025-09",
+  "local": "palau, sardenha",
+  "fotografia": "",
+  "disciplina": "investigação",
+  "area": "tese",
+  "periodo": "2025—",
+  "capa": {
+    "imagem": "/images/uploads/lota-maq-bgr.png",
+    "x": 0,
+    "y": -0.59375,
+    "w": 1,
+    "h": 2.1875,
+    "proporcao": 1
+  },
+  "emCurso": true,
+  "colaboracao": "",
+  "orientacao": "",
+  "titulo": "doca de pesca",
+  "categoria": "investigação"
+}

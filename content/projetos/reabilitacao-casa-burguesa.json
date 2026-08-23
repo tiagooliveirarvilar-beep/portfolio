@@ -1,0 +1,23 @@
+{
+  "imagens": [],
+  "descricao": "Reabilitação de uma casa burguesa do século XIX, na Rua de Brito Capelo, transformada em escola.",
+  "data": "2025-05",
+  "local": "matosinhos, porto",
+  "fotografia": "",
+  "disciplina": "arquitetura",
+  "area": "reabilitação",
+  "periodo": "2024/2025",
+  "capa": {
+    "imagem": "",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "proporcao": 1
+  },
+  "emCurso": false,
+  "colaboracao": "Ana Soares, Giulio Schiavon, Leonor Ribeiro, Mariana Reina, Raquel Guedes, Tiago Vilar",
+  "orientacao": "",
+  "titulo": "reabilitação de casa burguesa",
+  "categoria": "arquitetura"
+}

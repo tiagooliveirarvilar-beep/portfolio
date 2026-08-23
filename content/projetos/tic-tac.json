@@ -1,0 +1,23 @@
+{
+  "imagens": [],
+  "descricao": "Ator em peça de teatro do grupo TIC TAC.",
+  "data": "2025-12",
+  "local": "",
+  "fotografia": "",
+  "disciplina": "teatro",
+  "area": "",
+  "periodo": "2025",
+  "capa": {
+    "imagem": "",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "proporcao": 1
+  },
+  "emCurso": false,
+  "colaboracao": "",
+  "orientacao": "",
+  "titulo": "tic tac",
+  "categoria": "teatro"
+}

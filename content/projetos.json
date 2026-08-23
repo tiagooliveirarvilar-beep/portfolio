@@ -1,34 +1,10 @@
 {
+  "_gerado": "Ficheiro gerado automaticamente por scripts/gerar-lista.js. Nao editar a mao — edita as fichas em content/projetos/ pelo painel /admin.",
   "projetos": [
-    {
-      "imagens": [],
-      "descricao": "Investigação sobre a vida e a obra do arquiteto Alberto Ponis, com consulta prevista ao Archivio Ponis Zalaffi, em Palau, Sardenha.",
-      "data": "2025-09",
-      "slug": "",
-      "local": "palau, sardenha",
-      "fotografia": "",
-      "disciplina": "investigação",
-      "area": "tese",
-      "periodo": "2025—",
-      "capa": {
-        "imagem": "/images/uploads/lota-maq-bgr.png",
-        "x": 0,
-        "y": -0.59375,
-        "w": 1,
-        "h": 2.1875,
-        "proporcao": 1
-      },
-      "emCurso": true,
-      "colaboracao": "",
-      "orientacao": "",
-      "titulo": "doca de pesca",
-      "categoria": "investigação"
-    },
     {
       "imagens": [],
       "descricao": "Peça de mobiliário desenhada e construída em carpintaria.",
       "data": "2026-08",
-      "slug": "movel",
       "local": "",
       "fotografia": "",
       "disciplina": "carpintaria",
@@ -46,13 +22,13 @@
       "colaboracao": "",
       "orientacao": "",
       "titulo": "móvel de apoio",
-      "categoria": "objetos"
+      "categoria": "objetos",
+      "slug": "movel"
     },
     {
       "imagens": [],
       "descricao": "Remodelação de um apartamento no 3.º piso para uma família de cinco pessoas.",
       "data": "2026-01",
-      "slug": "",
       "local": "porto",
       "fotografia": "",
       "disciplina": "arquitetura",
@@ -70,13 +46,13 @@
       "colaboracao": "Juliano Ribas, Arq.",
       "orientacao": "",
       "titulo": "torre residencial, lapa",
-      "categoria": "arquitetura profissional"
+      "categoria": "arquitetura profissional",
+      "slug": "torre-residencial-lapa"
     },
     {
       "imagens": [],
       "descricao": "Ator em peça de teatro do grupo TIC TAC.",
       "data": "2025-12",
-      "slug": "tic-tac",
       "local": "",
       "fotografia": "",
       "disciplina": "teatro",
@@ -94,30 +70,37 @@
       "colaboracao": "",
       "orientacao": "",
       "titulo": "tic tac",
-      "categoria": "teatro"
+      "categoria": "teatro",
+      "slug": "tic-tac"
     },
     {
       "imagens": [],
-      "descricao": "Composto volumétrico tridimensional de um terreno, para listagem imobiliária.",
-      "data": "2024-10",
-      "slug": "aroeira",
-      "local": "aroeira",
+      "descricao": "Investigação sobre a vida e a obra do arquiteto Alberto Ponis, com consulta prevista ao Archivio Ponis Zalaffi, em Palau, Sardenha.",
+      "data": "2025-09",
+      "local": "palau, sardenha",
       "fotografia": "",
-      "disciplina": "modelação 3D",
-      "area": "terreno",
-      "periodo": "2024",
-      "capa": "",
-      "emCurso": false,
+      "disciplina": "investigação",
+      "area": "tese",
+      "periodo": "2025—",
+      "capa": {
+        "imagem": "/images/uploads/lota-maq-bgr.png",
+        "x": 0,
+        "y": -0.59375,
+        "w": 1,
+        "h": 2.1875,
+        "proporcao": 1
+      },
+      "emCurso": true,
       "colaboracao": "",
       "orientacao": "",
-      "titulo": "aroeira",
-      "categoria": "arquitetura profissional"
+      "titulo": "doca de pesca",
+      "categoria": "investigação",
+      "slug": "doca-de-pesca"
     },
     {
       "imagens": [],
       "descricao": "Reabilitação de uma casa burguesa do século XIX, na Rua de Brito Capelo, transformada em escola.",
       "data": "2025-05",
-      "slug": "reabilitacao-casa-burguesa",
       "local": "matosinhos, porto",
       "fotografia": "",
       "disciplina": "arquitetura",
@@ -135,13 +118,30 @@
       "colaboracao": "Ana Soares, Giulio Schiavon, Leonor Ribeiro, Mariana Reina, Raquel Guedes, Tiago Vilar",
       "orientacao": "",
       "titulo": "reabilitação de casa burguesa",
-      "categoria": "arquitetura"
+      "categoria": "arquitetura",
+      "slug": "reabilitacao-casa-burguesa"
+    },
+    {
+      "imagens": [],
+      "descricao": "Composto volumétrico tridimensional de um terreno, para listagem imobiliária.",
+      "data": "2024-10",
+      "local": "aroeira",
+      "fotografia": "",
+      "disciplina": "modelação 3D",
+      "area": "terreno",
+      "periodo": "2024",
+      "capa": "",
+      "emCurso": false,
+      "colaboracao": "",
+      "orientacao": "",
+      "titulo": "aroeira",
+      "categoria": "arquitetura profissional",
+      "slug": "aroeira"
     },
     {
       "imagens": [],
       "descricao": "Organização e atuação numa peça de teatro de caridade, no âmbito da Missão País.",
       "data": "2024-07",
-      "slug": "missao-pais-teatro",
       "local": "castelo de paiva",
       "fotografia": "",
       "disciplina": "teatro",
@@ -152,13 +152,13 @@
       "colaboracao": "",
       "orientacao": "",
       "titulo": "missão país",
-      "categoria": "teatro"
+      "categoria": "teatro",
+      "slug": "missao-pais-teatro"
     },
     {
       "imagens": [],
       "descricao": "Análise territorial da Granja do Têdo e das margens do rio.",
       "data": "2024-02",
-      "slug": "margens-do-rio-tedo",
       "local": "granja do têdo",
       "fotografia": "",
       "disciplina": "análise territorial",
@@ -169,13 +169,13 @@
       "colaboracao": "Beatriz Perdigoto, Beatriz Taborda, Francisca Sottomayor, Mariana Reina, Tiago Vilar",
       "orientacao": "",
       "titulo": "margens do rio tedo",
-      "categoria": "arquitetura académica"
+      "categoria": "arquitetura académica",
+      "slug": "margens-do-rio-tedo"
     },
     {
       "imagens": [],
       "descricao": "Voluntariado na Missão País, em Castelo de Paiva, em 2023, 2024 e 2025.",
       "data": "2023-07",
-      "slug": "voluntariado-missao-pais",
       "local": "castelo de paiva",
       "fotografia": "",
       "disciplina": "voluntariado",
@@ -186,13 +186,13 @@
       "colaboracao": "",
       "orientacao": "",
       "titulo": "voluntariado missão país",
-      "categoria": "voluntariado"
+      "categoria": "voluntariado",
+      "slug": "voluntariado-missao-pais"
     },
     {
       "imagens": [],
       "descricao": "Voluntariado no Open House Porto.",
       "data": "2023-06",
-      "slug": "open-house-porto",
       "local": "porto",
       "fotografia": "",
       "disciplina": "voluntariado",
@@ -203,13 +203,13 @@
       "colaboracao": "",
       "orientacao": "",
       "titulo": "open house porto",
-      "categoria": "voluntariado"
+      "categoria": "voluntariado",
+      "slug": "open-house-porto"
     },
     {
       "imagens": [],
       "descricao": "Curso de três semanas de design de interiores de embarcações, na ESAD.",
       "data": "2023-02",
-      "slug": "design-interiores-barcos",
       "local": "matosinhos",
       "fotografia": "",
       "disciplina": "curso",
@@ -220,13 +220,13 @@
       "colaboracao": "",
       "orientacao": "",
       "titulo": "design de interiores de barcos",
-      "categoria": "formação"
+      "categoria": "formação",
+      "slug": "design-interiores-barcos"
     },
     {
       "imagens": [],
       "descricao": "Workshop Arquitetura na Prática.",
       "data": "2022-09",
-      "slug": "arquitetura-na-pratica",
       "local": "",
       "fotografia": "",
       "disciplina": "workshop",
@@ -237,13 +237,13 @@
       "colaboracao": "",
       "orientacao": "",
       "titulo": "arquitetura na prática",
-      "categoria": "formação"
+      "categoria": "formação",
+      "slug": "arquitetura-na-pratica"
     },
     {
       "imagens": [],
       "descricao": "Formação em vela.",
       "data": "2022-08",
-      "slug": "aulas-de-vela",
       "local": "",
       "fotografia": "",
       "disciplina": "formação",
@@ -254,13 +254,13 @@
       "colaboracao": "",
       "orientacao": "",
       "titulo": "aulas de vela",
-      "categoria": "formação"
+      "categoria": "formação",
+      "slug": "aulas-de-vela"
     },
     {
       "imagens": [],
       "descricao": "Academia de verão de Revit, na Ventura Partners.",
       "data": "2022-07",
-      "slug": "academia-de-revit",
       "local": "",
       "fotografia": "",
       "disciplina": "formação",
@@ -271,7 +271,8 @@
       "colaboracao": "",
       "orientacao": "",
       "titulo": "academia de revit",
-      "categoria": "formação"
+      "categoria": "formação",
+      "slug": "academia-de-revit"
     }
   ]
 }

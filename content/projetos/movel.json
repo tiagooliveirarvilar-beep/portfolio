@@ -1,0 +1,23 @@
+{
+  "imagens": [],
+  "descricao": "Peça de mobiliário desenhada e construída em carpintaria.",
+  "data": "2026-08",
+  "local": "",
+  "fotografia": "",
+  "disciplina": "carpintaria",
+  "area": "objeto",
+  "periodo": "2024",
+  "capa": {
+    "imagem": "/images/uploads/movel-bgr.png",
+    "x": 0.08000000000000002,
+    "y": -0.13,
+    "w": 0.84,
+    "h": 1.26,
+    "proporcao": 1
+  },
+  "emCurso": false,
+  "colaboracao": "",
+  "orientacao": "",
+  "titulo": "móvel de apoio",
+  "categoria": "objetos"
+}

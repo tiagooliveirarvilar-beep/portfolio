@@ -1,0 +1,52 @@
+# Sempre que uma ficha de projeto e gravada no painel /admin, este workflow
+# reconstroi content/projetos.json — o ficheiro unico que o site le.
+#
+# Porque e preciso: um site estatico nao consegue "ver" que ficheiros existem
+# numa pasta, por isso a lista tem de ser escrita para um ficheiro.
+#
+# Nao ha risco de ciclo infinito: isto so dispara com alteracoes dentro de
+# content/projetos/ e o que ele grava e content/projetos.json, que esta fora
+# dessa pasta e por isso nao volta a disparar o workflow.
+
+name: Gerar lista de projetos
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/projetos/**'
+      - 'scripts/gerar-lista.js'
+  workflow_dispatch:
+
+# Evita que duas gravacoes seguidas no painel se atropelem.
+concurrency:
+  group: gerar-lista
+  cancel-in-progress: false
+
+jobs:
+  gerar:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Gerar content/projetos.json
+        run: node scripts/gerar-lista.js
+
+      - name: Gravar se houver alteracoes
+        run: |
+          if git diff --quiet -- content/projetos.json; then
+            echo "Lista sem alteracoes; nada a gravar."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/projetos.json
+          git commit -m "Atualizar lista de projetos (automatico)"
+          git push
