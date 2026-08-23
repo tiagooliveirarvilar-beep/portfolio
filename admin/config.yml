@@ -54,13 +54,7 @@ collections:
       - { label: "Projeto em curso", name: "emCurso", widget: "boolean", default: false, hint: "Se ligado, a home mostra 'em curso' em vez da data." }
       - { label: "Categoria", name: "categoria", widget: "categoria", required: false, hint: "Escolhe da lista ou escreve uma categoria nova." }
       - { label: "Imagem de capa", name: "capa", widget: "recorte", required: false, forcarQuadrado: true, hint: "A capa é sempre quadrada." }
-      - label: "Imagens do projeto"
-        name: "imagens"
-        widget: "list"
-        required: false
-        fields:
-          - { label: "Imagem", name: "imagem", widget: "recorte", hint: "Recorte livre: escolhe a parte que interessa, com a altura que quiseres. Na página saem todas com a mesma largura, centradas." }
-          - { label: "Legenda", name: "legenda", widget: "string", required: false }
+      - { label: "Imagens do projeto", name: "imagens", widget: "galeria", required: false, hint: "\"Adicionar fotos\" permite escolher várias imagens do computador de uma vez. Recorte livre: escolhe a parte que interessa, com a altura que quiseres — na página saem todas com a mesma largura, centradas." }
       - { label: "Descrição curta (ficha técnica)", name: "descricao", widget: "text", required: false }
       - { label: "Local", name: "local", widget: "string", required: false }
       - { label: "Período (ex. 2024/2025)", name: "periodo", widget: "string", required: false }

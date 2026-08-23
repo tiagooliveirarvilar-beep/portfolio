@@ -272,6 +272,20 @@ img { display: block; max-width: 100%; }
   z-index: 5;
 }
 
+/* No mesmo lugar do numero do projeto na home: discreto, sempre no lugar. */
+.voltar {
+  position: fixed;
+  left: var(--margem);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: clamp(16px, 1.8vw, 22px);
+  color: var(--gray);
+  z-index: 5;
+  transition: color .18s ease;
+}
+
+.voltar:hover { color: var(--ink); }
+
 .conteudo {
   max-width: var(--conteudo-max);
   margin: 0 auto;
