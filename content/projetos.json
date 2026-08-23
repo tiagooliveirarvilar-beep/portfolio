@@ -182,9 +182,9 @@
       "data": "2025-09",
       "local": "matosinhos, porto, portugal",
       "fotografia": "",
-      "disciplina": "investigação",
-      "area": "tese",
-      "periodo": "2025—",
+      "disciplina": "",
+      "area": "",
+      "periodo": "2024-2025",
       "capa": {
         "imagem": "/images/uploads/lota-maq-bgr.png",
         "x": 0,
@@ -194,7 +194,7 @@
         "proporcao": 1
       },
       "categoria": "arquitetura",
-      "emCurso": true,
+      "emCurso": false,
       "colaboracao": "",
       "orientacao": "",
       "titulo": "doca de pesca",
