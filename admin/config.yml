@@ -4,17 +4,18 @@
 # Netlify republica o site sozinho.
 
 backend:
-  name: git-gateway
+  name: github
+  repo: tiagooliveirarvilar-beep/portfolio
   branch: main
+  auth_endpoint: api/auth
 
 # So tem efeito em localhost (com "npx decap-server" a correr), para poder
 # testar o painel sem estar publicado. Em producao e ignorado.
 local_backend: true
 
-# Depois de publicado no Netlify, muda este valor para o URL real do site
-# (o painel de "media" e o preview usam-no para mostrar as imagens certas).
-site_url: https://portfoliotiagovilar.netlify.app
-display_url: https://portfoliotiagovilar.netlify.app
+# URL do site publicado no Cloudflare Pages
+site_url: https://portfolio.tiagooliveirarvilar.workers.dev/
+display_url: https://portfolio.tiagooliveirarvilar.workers.dev/
 logo_url: /images/placeholder.svg
 
 media_folder: "images/uploads"
