@@ -1,7 +1,7 @@
 {
   "imagens": [],
   "descricao": "Remodelação de um apartamento no 3.º piso para uma família de cinco pessoas.",
-  "data": "2026-01",
+  "data": "2024-06",
   "local": "porto",
   "fotografia": "",
   "disciplina": "arquitetura",
@@ -15,9 +15,9 @@
     "h": 1,
     "proporcao": 1
   },
+  "categoria": "arquitetura profissional",
   "emCurso": true,
   "colaboracao": "Juliano Ribas, Arq.",
   "orientacao": "",
-  "titulo": "torre residencial, lapa",
-  "categoria": "arquitetura profissional"
+  "titulo": "torre residencial, lapa"
 }
