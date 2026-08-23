@@ -10,9 +10,11 @@
   document.title = `${projeto.titulo} — Tiago Oliveira Ribeiro Vilar`;
   document.getElementById('titulo').textContent = projeto.titulo;
 
+  /* Sem imagens proprias, usa a capa como unica foto da galeria; sem
+     nenhuma das duas, a galeria fica vazia — nunca ha placeholder. */
   const imagens = (projeto.imagens && projeto.imagens.length)
     ? projeto.imagens
-    : [{ imagem: projeto.capa || 'images/placeholder.svg', legenda: '' }];
+    : (fonteImagem(projeto.capa) ? [{ imagem: projeto.capa, legenda: '' }] : []);
 
   /* Todas as imagens saem com a mesma largura; so a altura acompanha o
      recorte escolhido no painel. */

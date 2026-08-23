@@ -11,7 +11,8 @@
   try {
     const sobre = await carregarJSON('content/sobre.json');
     document.getElementById('sobre-texto').textContent = sobre.texto || '';
-    if (sobre.foto) document.getElementById('sobre-foto').src = sobre.foto;
+    const foto = document.getElementById('sobre-foto');
+    if (sobre.foto) { foto.src = sobre.foto; foto.hidden = false; }
   } catch (erro) {
     console.error(erro);
   }

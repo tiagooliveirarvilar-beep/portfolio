@@ -9,11 +9,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
-<!-- Os emails de convite e de recuperacao de password do Netlify Identity
-     abrem a RAIZ do site com um token no fim do URL (#invite_token=...).
-     Sem este widget aqui, o link nao faz nada e nunca se chega a definir a
-     password. Depois de entrar, segue para o painel. -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
 
@@ -25,7 +20,7 @@
 
 <!-- Sobre Mim + Contacto: um ecra sem scroll, fora da cronologia -->
 <section class="perfil" id="perfil" hidden>
-  <img class="perfil__foto" id="sobre-foto" alt="" src="images/retrato.svg">
+  <img class="perfil__foto" id="sobre-foto" alt="" hidden>
   <div class="perfil__conteudo">
     <div class="perfil__contacto">
       <p class="etiqueta">contacto</p>
@@ -41,17 +36,5 @@
 <script src="js/conteudo.js"></script>
 <script src="js/home.js"></script>
 <script src="js/perfil.js"></script>
-<script>
-  /* Ao aceitar o convite ou recuperar a password, o Netlify Identity abre o
-     seu proprio formulario por cima da home; concluido o login, segue para o
-     painel de edicao. Para quem so visita o site, isto e invisivel. */
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on('init', user => {
-      if (!user) {
-        window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; });
-      }
-    });
-  }
-</script>
 </body>
 </html>

@@ -1,15 +1,7 @@
 {
   "projetos": [
     {
-      "imagens": [
-        {
-          "imagem": "images/placeholder.svg",
-          "legenda": ""
-        }
-      ],
-      "categorias": [
-        "investigação"
-      ],
+      "imagens": [],
       "descricao": "Investigação sobre a vida e a obra do arquiteto Alberto Ponis, com consulta prevista ao Archivio Ponis Zalaffi, em Palau, Sardenha.",
       "data": "2025-09",
       "slug": "",
@@ -29,18 +21,11 @@
       "emCurso": true,
       "colaboracao": "",
       "orientacao": "",
-      "titulo": "doca de pesca"
+      "titulo": "doca de pesca",
+      "categoria": "investigação"
     },
     {
-      "imagens": [
-        {
-          "imagem": "images/placeholder.svg",
-          "legenda": ""
-        }
-      ],
-      "categorias": [
-        "objetos"
-      ],
+      "imagens": [],
       "descricao": "Peça de mobiliário desenhada e construída em carpintaria.",
       "data": "2026-08",
       "slug": "movel",
@@ -60,18 +45,11 @@
       "emCurso": false,
       "colaboracao": "",
       "orientacao": "",
-      "titulo": "móvel de apoio"
+      "titulo": "móvel de apoio",
+      "categoria": "objetos"
     },
     {
-      "imagens": [
-        {
-          "imagem": "images/placeholder.svg",
-          "legenda": ""
-        }
-      ],
-      "categorias": [
-        "arquitetura profissional"
-      ],
+      "imagens": [],
       "descricao": "Remodelação de um apartamento no 3.º piso para uma família de cinco pessoas.",
       "data": "2026-01",
       "slug": "",
@@ -91,18 +69,11 @@
       "emCurso": true,
       "colaboracao": "Juliano Ribas, Arq.",
       "orientacao": "",
-      "titulo": "torre residencial, lapa"
+      "titulo": "torre residencial, lapa",
+      "categoria": "arquitetura profissional"
     },
     {
-      "imagens": [
-        {
-          "imagem": "images/placeholder.svg",
-          "legenda": ""
-        }
-      ],
-      "categorias": [
-        "teatro"
-      ],
+      "imagens": [],
       "descricao": "Ator em peça de teatro do grupo TIC TAC.",
       "data": "2025-12",
       "slug": "tic-tac",
@@ -122,18 +93,11 @@
       "emCurso": false,
       "colaboracao": "",
       "orientacao": "",
-      "titulo": "tic tac"
+      "titulo": "tic tac",
+      "categoria": "teatro"
     },
     {
-      "imagens": [
-        {
-          "imagem": "images/placeholder.svg",
-          "legenda": ""
-        }
-      ],
-      "categorias": [
-        "arquitetura profissional"
-      ],
+      "imagens": [],
       "descricao": "Composto volumétrico tridimensional de um terreno, para listagem imobiliária.",
       "data": "2024-10",
       "slug": "aroeira",
@@ -142,22 +106,15 @@
       "disciplina": "modelação 3D",
       "area": "terreno",
       "periodo": "2024",
-      "capa": "images/placeholder.svg",
+      "capa": "",
       "emCurso": false,
       "colaboracao": "",
       "orientacao": "",
-      "titulo": "aroeira"
+      "titulo": "aroeira",
+      "categoria": "arquitetura profissional"
     },
     {
-      "imagens": [
-        {
-          "imagem": "images/placeholder.svg",
-          "legenda": ""
-        }
-      ],
-      "categorias": [
-        "arquitetura"
-      ],
+      "imagens": [],
       "descricao": "Reabilitação de uma casa burguesa do século XIX, na Rua de Brito Capelo, transformada em escola.",
       "data": "2025-05",
       "slug": "reabilitacao-casa-burguesa",
@@ -177,19 +134,11 @@
       "emCurso": false,
       "colaboracao": "Ana Soares, Giulio Schiavon, Leonor Ribeiro, Mariana Reina, Raquel Guedes, Tiago Vilar",
       "orientacao": "",
-      "titulo": "reabilitação de casa burguesa"
+      "titulo": "reabilitação de casa burguesa",
+      "categoria": "arquitetura"
     },
     {
-      "imagens": [
-        {
-          "imagem": "images/placeholder.svg",
-          "legenda": ""
-        }
-      ],
-      "categorias": [
-        "teatro",
-        "voluntariado"
-      ],
+      "imagens": [],
       "descricao": "Organização e atuação numa peça de teatro de caridade, no âmbito da Missão País.",
       "data": "2024-07",
       "slug": "missao-pais-teatro",
@@ -198,22 +147,15 @@
       "disciplina": "teatro",
       "area": "",
       "periodo": "2024",
-      "capa": "images/placeholder.svg",
+      "capa": "",
       "emCurso": false,
       "colaboracao": "",
       "orientacao": "",
-      "titulo": "missão país"
+      "titulo": "missão país",
+      "categoria": "teatro"
     },
     {
-      "imagens": [
-        {
-          "imagem": "images/placeholder.svg",
-          "legenda": ""
-        }
-      ],
-      "categorias": [
-        "arquitetura académica"
-      ],
+      "imagens": [],
       "descricao": "Análise territorial da Granja do Têdo e das margens do rio.",
       "data": "2024-02",
       "slug": "margens-do-rio-tedo",
@@ -222,22 +164,15 @@
       "disciplina": "análise territorial",
       "area": "território",
       "periodo": "2023/2024",
-      "capa": "images/placeholder.svg",
+      "capa": "",
       "emCurso": false,
       "colaboracao": "Beatriz Perdigoto, Beatriz Taborda, Francisca Sottomayor, Mariana Reina, Tiago Vilar",
       "orientacao": "",
-      "titulo": "margens do rio tedo"
+      "titulo": "margens do rio tedo",
+      "categoria": "arquitetura académica"
     },
     {
-      "imagens": [
-        {
-          "imagem": "images/placeholder.svg",
-          "legenda": ""
-        }
-      ],
-      "categorias": [
-        "voluntariado"
-      ],
+      "imagens": [],
       "descricao": "Voluntariado na Missão País, em Castelo de Paiva, em 2023, 2024 e 2025.",
       "data": "2023-07",
       "slug": "voluntariado-missao-pais",
@@ -246,22 +181,15 @@
       "disciplina": "voluntariado",
       "area": "",
       "periodo": "2023—2025",
-      "capa": "images/placeholder.svg",
+      "capa": "",
       "emCurso": false,
       "colaboracao": "",
       "orientacao": "",
-      "titulo": "voluntariado missão país"
+      "titulo": "voluntariado missão país",
+      "categoria": "voluntariado"
     },
     {
-      "imagens": [
-        {
-          "imagem": "images/placeholder.svg",
-          "legenda": ""
-        }
-      ],
-      "categorias": [
-        "voluntariado"
-      ],
+      "imagens": [],
       "descricao": "Voluntariado no Open House Porto.",
       "data": "2023-06",
       "slug": "open-house-porto",
@@ -270,22 +198,15 @@
       "disciplina": "voluntariado",
       "area": "",
       "periodo": "2023",
-      "capa": "images/placeholder.svg",
+      "capa": "",
       "emCurso": false,
       "colaboracao": "",
       "orientacao": "",
-      "titulo": "open house porto"
+      "titulo": "open house porto",
+      "categoria": "voluntariado"
     },
     {
-      "imagens": [
-        {
-          "imagem": "images/placeholder.svg",
-          "legenda": ""
-        }
-      ],
-      "categorias": [
-        "formação"
-      ],
+      "imagens": [],
       "descricao": "Curso de três semanas de design de interiores de embarcações, na ESAD.",
       "data": "2023-02",
       "slug": "design-interiores-barcos",
@@ -294,22 +215,15 @@
       "disciplina": "curso",
       "area": "design de interiores",
       "periodo": "2023",
-      "capa": "images/placeholder.svg",
+      "capa": "",
       "emCurso": false,
       "colaboracao": "",
       "orientacao": "",
-      "titulo": "design de interiores de barcos"
+      "titulo": "design de interiores de barcos",
+      "categoria": "formação"
     },
     {
-      "imagens": [
-        {
-          "imagem": "images/placeholder.svg",
-          "legenda": ""
-        }
-      ],
-      "categorias": [
-        "formação"
-      ],
+      "imagens": [],
       "descricao": "Workshop Arquitetura na Prática.",
       "data": "2022-09",
       "slug": "arquitetura-na-pratica",
@@ -318,22 +232,15 @@
       "disciplina": "workshop",
       "area": "",
       "periodo": "2022",
-      "capa": "images/placeholder.svg",
+      "capa": "",
       "emCurso": false,
       "colaboracao": "",
       "orientacao": "",
-      "titulo": "arquitetura na prática"
+      "titulo": "arquitetura na prática",
+      "categoria": "formação"
     },
     {
-      "imagens": [
-        {
-          "imagem": "images/placeholder.svg",
-          "legenda": ""
-        }
-      ],
-      "categorias": [
-        "formação"
-      ],
+      "imagens": [],
       "descricao": "Formação em vela.",
       "data": "2022-08",
       "slug": "aulas-de-vela",
@@ -342,22 +249,15 @@
       "disciplina": "formação",
       "area": "",
       "periodo": "2022",
-      "capa": "images/placeholder.svg",
+      "capa": "",
       "emCurso": false,
       "colaboracao": "",
       "orientacao": "",
-      "titulo": "aulas de vela"
+      "titulo": "aulas de vela",
+      "categoria": "formação"
     },
     {
-      "imagens": [
-        {
-          "imagem": "images/placeholder.svg",
-          "legenda": ""
-        }
-      ],
-      "categorias": [
-        "formação"
-      ],
+      "imagens": [],
       "descricao": "Academia de verão de Revit, na Ventura Partners.",
       "data": "2022-07",
       "slug": "academia-de-revit",
@@ -366,11 +266,12 @@
       "disciplina": "formação",
       "area": "software",
       "periodo": "2022",
-      "capa": "images/placeholder.svg",
+      "capa": "",
       "emCurso": false,
       "colaboracao": "",
       "orientacao": "",
-      "titulo": "academia de revit"
+      "titulo": "academia de revit",
+      "categoria": "formação"
     }
   ]
 }

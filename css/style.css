@@ -34,7 +34,7 @@
   --ficha-size: clamp(10px, 1.1vw, 12px);
 
   /* Marca fixa, Sobre e Contacto */
-  --marca-size: clamp(9px, 0.95vw, 12px);
+  --marca-size: clamp(18px, 1.9vw, 24px);
   --sobre-size: clamp(8px, 0.9vw, 12px);
   --contacto-size: clamp(9.5px, 1.05vw, 13px);
   --etiqueta-size: clamp(8px, 0.85vw, 11px);

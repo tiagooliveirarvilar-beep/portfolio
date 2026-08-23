@@ -73,9 +73,19 @@ function recorteDe(valor) {
 
 /* Constroi a imagem ja recortada. A caixa exterior fixa a proporcao e a imagem
    la dentro e ampliada e deslocada para so se ver o pedaco escolhido —
-   sem nunca deformar a foto. */
+   sem nunca deformar a foto.
+
+   Nunca ha placeholder: se ainda nao existe imagem, a caixa fica so em
+   branco (cor de fundo do site), do tamanho certo, sem <img> nenhuma. */
 function htmlImagem(valor, classe, alt, proporcaoFixa) {
-  const src = fonteImagem(valor) || 'images/placeholder.svg';
+  const src = fonteImagem(valor);
+
+  if (!src) {
+    return proporcaoFixa
+      ? `<span class="recorte ${classe}" style="aspect-ratio:${proporcaoFixa}"></span>`
+      : '';
+  }
+
   const r = recorteDe(valor);
 
   if (!r) {

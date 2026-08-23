@@ -4,19 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Admin — Tiago Oliveira Ribeiro Vilar</title>
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-<script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+<!-- Versao presa (nao "^3.0.0"): o widget de recorte depende de detalhes
+     internos da biblioteca de media que uma atualizacao automatica podia
+     partir sem aviso. -->
+<script src="https://unpkg.com/decap-cms@3.15.1/dist/decap-cms.js"></script>
+<script src="categoria.js"></script>
 <script src="recorte.js"></script>
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on('init', user => {
-      if (!user) {
-        window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; });
-      }
-    });
-  }
-</script>
 </body>
 </html>

@@ -10,7 +10,14 @@
 
    Opcoes do campo em config.yml:
      forcarQuadrado: true  -> a moldura e sempre quadrada (usado na capa)
-*/
+
+   Como captura a imagem escolhida: segue exatamente o mesmo padrao do widget
+   "image" oficial do Decap — gera um controlID proprio (nao usar forID, que e
+   outra coisa), passa-o a onOpenMediaLibrary, e le o caminho escolhido em
+   props.mediaPaths.get(controlID) quando o componente atualiza. Ao abrir a
+   biblioteca, tenta ainda saltar logo para o explorador de ficheiros do
+   sistema, clicando sozinho no botao "Enviar novo" assim que a janela abre —
+   evita ter de navegar a galeria para carregar uma imagem nova. */
 (function () {
   var h = window.h;
   var createClass = window.createClass;
@@ -44,40 +51,52 @@
     };
   }
 
+  /* Tenta clicar sozinho no botao "Enviar novo" da biblioteca de media assim
+     que ela abrir, para ir direto ao explorador de ficheiros do sistema.
+     Se o botao mudar de texto numa versao futura do Decap, isto simplesmente
+     nao encontra nada e o utilizador usa a biblioteca normalmente — nunca
+     parte a funcionalidade, so deixa de poupar o clique extra. */
+  function saltarParaExplorador() {
+    var tentativas = 0;
+    var intervalo = setInterval(function () {
+      tentativas++;
+      var botoes = document.querySelectorAll('[role="dialog"] button');
+      for (var i = 0; i < botoes.length; i++) {
+        if (/enviar novo|upload new/i.test(botoes[i].textContent || '')) {
+          clearInterval(intervalo);
+          botoes[i].click();
+          return;
+        }
+      }
+      if (tentativas > 20) clearInterval(intervalo);
+    }, 50);
+  }
+
   var Controlo = createClass({
     getInitialState: function () {
       return { larguraNatural: 0, alturaNatural: 0, aArrastar: false };
     },
 
+    componentWillMount: function () {
+      this.controlID = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Math.random());
+    },
+
     componentWillUnmount: function () {
-      clearInterval(this.vigia);
       this.pararArrasto();
+      this.props.onRemoveMediaControl(this.controlID);
     },
 
-    /* O Decap 3 nao entrega a imagem escolhida a widgets personalizados
-       (mediaPaths fica sempre vazio), por isso a escolha do ficheiro e feita
-       pelo widget nativo "image" ao lado e aqui so se le qual e a imagem. */
-    componentDidMount: function () {
-      var self = this;
-      this.procurarImagem();
-      this.vigia = setInterval(function () { self.procurarImagem(); }, 400);
-    },
-
-    procurarImagem: function () {
-      if (!this.raiz) return;
-      var no = this.raiz, alvo = null;
-      for (var i = 0; i < 8 && no && !alvo; i++) {
-        var imgs = no.querySelectorAll('img');
-        for (var j = 0; j < imgs.length; j++) {
-          if (!this.raiz.contains(imgs[j])) { alvo = imgs[j]; break; }
-        }
-        no = no.parentElement;
-      }
-      var origem = alvo ? alvo.getAttribute('src') : '';
-      if (origem !== this.state.origem) {
-        this.setState({
-          origem: origem, larguraNatural: 0, alturaNatural: 0, ajustado: false
-        });
+    /* Padrao oficial do Decap: depois de escolher/enviar uma imagem na
+       biblioteca, o caminho fica disponivel em mediaPaths, indexado pelo
+       controlID que passamos a onOpenMediaLibrary — nunca por forID. */
+    componentDidUpdate: function () {
+      var mediaPath = this.props.mediaPaths.get(this.controlID);
+      var v = this.valor();
+      if (mediaPath && mediaPath !== v.imagem) {
+        this.setState({ larguraNatural: 0, alturaNatural: 0, ajustado: false });
+        this.gravar({ imagem: mediaPath, x: 0, y: 0, w: 1, h: 1 });
+      } else if (mediaPath && mediaPath === v.imagem) {
+        this.props.onRemoveInsertedMedia(this.controlID);
       }
     },
 
@@ -221,12 +240,13 @@
     abrirBiblioteca: function (evento) {
       evento.preventDefault();
       this.props.onOpenMediaLibrary({
-        controlID: this.props.forID,
+        controlID: this.controlID,
         forImage: true,
         privateUpload: false,
         value: this.valor().imagem,
         field: this.props.field
       });
+      saltarParaExplorador();
     },
 
     limpar: function (evento) {

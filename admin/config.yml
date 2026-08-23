@@ -17,7 +17,6 @@ local_backend: true
 # URL do site publicado no Cloudflare Pages
 site_url: https://portfolio.tiagooliveirarvilar.workers.dev/
 display_url: https://portfolio.tiagooliveirarvilar.workers.dev/
-logo_url: /images/placeholder.svg
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
@@ -32,10 +31,13 @@ collections:
       - name: "projetos"
         label: "Projetos"
         file: "content/projetos.json"
+        editor:
+          preview: false
         # Um unico ficheiro com a lista de todos os projetos. A ordem desta
         # lista e a ordem exata da home: arrasta os itens para reordenar.
         # O numero a esquerda (01, 02...) e calculado sozinho — 01 e o projeto
-        # mais antigo, ou seja o ultimo da lista.
+        # mais antigo, ou seja o ultimo da lista. O slug do URL gera-se
+        # sozinho a partir do titulo, sem campo proprio.
         fields:
           - label: "Projetos"
             name: "projetos"
@@ -43,17 +45,16 @@ collections:
             summary: "{{titulo}} — {{data}}"
             fields:
               - { label: "Título (sempre em minúsculas)", name: "titulo", widget: "string", pattern: ['^[^A-ZÀ-Ý]*$', "Usa só minúsculas, mesmo na primeira letra."] }
-              - { label: "Identificador do URL (slug)", name: "slug", widget: "string", required: false, hint: "Deixa em branco para gerar a partir do título." }
               - { label: "Data", name: "data", widget: "datetime", format: "YYYY-MM", date_format: "MMMM [de] YYYY", time_format: false, required: false, hint: "Usada para ordenar e para mostrar 'mês de ano' na home." }
               - { label: "Projeto em curso", name: "emCurso", widget: "boolean", default: false, hint: "Se ligado, a home mostra 'em curso' em vez da data." }
-              - { label: "Categorias/tags", name: "categorias", widget: "list", required: false, hint: "Guardadas para o futuro; não organizam a página por agora." }
-              - { label: "Imagem de capa", name: "capa", widget: "recorte", required: false, forcarQuadrado: true, hint: "Arrasta o retângulo para escolher que parte da foto aparece na home. A capa é sempre quadrada." }
+              - { label: "Categoria", name: "categoria", widget: "categoria", required: false, hint: "Escolhe da lista ou escreve uma categoria nova." }
+              - { label: "Imagem de capa", name: "capa", widget: "recorte", required: false, forcarQuadrado: true, hint: "A capa é sempre quadrada." }
               - label: "Imagens do projeto"
                 name: "imagens"
                 widget: "list"
                 required: false
                 fields:
-                  - { label: "Imagem", name: "imagem", widget: "recorte", hint: "Prefere-se quadrada. Se desligares 'manter quadrado', todas as imagens continuam com a mesma largura na página — só a altura muda." }
+                  - { label: "Imagem", name: "imagem", widget: "recorte", hint: "Prefere-se quadrada. Se desligares 'manter quadrado', todas continuam com a mesma largura na página — só a altura muda." }
                   - { label: "Legenda", name: "legenda", widget: "string", required: false }
               - { label: "Descrição curta (ficha técnica)", name: "descricao", widget: "text", required: false }
               - { label: "Local", name: "local", widget: "string", required: false }
@@ -70,6 +71,8 @@ collections:
       - name: "sobre"
         label: "Sobre Mim"
         file: "content/sobre.json"
+        editor:
+          preview: false
         fields:
           - { label: "Foto (retrato)", name: "foto", widget: "image", required: false }
           - { label: "Texto", name: "texto", widget: "text" }
@@ -80,6 +83,8 @@ collections:
       - name: "contacto"
         label: "Contacto"
         file: "content/contacto.json"
+        editor:
+          preview: false
         fields:
           - { label: "Email", name: "email", widget: "string", required: false }
           - { label: "Telefone", name: "telefone", widget: "string", required: false }
