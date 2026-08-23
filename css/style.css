@@ -419,4 +419,21 @@ img { display: block; max-width: 100%; }
 
   .ficha { grid-template-columns: 1fr; gap: 24px; }
   .ficha h2 { margin-bottom: 0; }
+
+  /* Pagina de projeto: o titulo fixo e a seta de voltar ficam a meio da
+     altura do ecra, por isso tudo o que rola lhes passa por baixo. Num ecra
+     largo sobra margem e nao se tocam; num telemovel as imagens chegavam-lhes
+     (ate 115px por cima do titulo). Reserva-se uma coluna a cada lado e o
+     conteudo passa a viver so no meio. */
+  .projeto-titulo {
+    max-width: 26vw;
+    text-align: right;
+  }
+
+  .pagina-projeto .conteudo {
+    padding-left: calc(var(--margem) + 28px);
+    padding-right: calc(26vw + var(--margem) + 12px);
+  }
+
+  .galeria figure { width: 100%; }
 }
