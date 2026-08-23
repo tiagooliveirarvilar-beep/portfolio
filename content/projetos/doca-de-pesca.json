@@ -8,7 +8,8 @@
         "w": 1,
         "h": 1,
         "proporcao": 1.7304582210242587
-      }
+      },
+      "legenda": ""
     },
     {
       "imagem": {
@@ -18,7 +19,8 @@
         "w": 0.9942793971819293,
         "h": 0.49271844660194175,
         "proporcao": 0.8561908981801076
-      }
+      },
+      "legenda": ""
     },
     {
       "imagem": {
@@ -28,7 +30,8 @@
         "w": 1,
         "h": 0.20873786407766992,
         "proporcao": 2.032636655006533
-      }
+      },
+      "legenda": ""
     },
     {
       "imagem": {
@@ -39,7 +42,7 @@
         "h": 0.575242718446602,
         "proporcao": 1.2068643275847422
       },
-      "legenda": "bçmm"
+      "legenda": ""
     },
     {
       "imagem": {
@@ -50,7 +53,7 @@
         "h": 0.7111650485436893,
         "proporcao": 0.5966100762135217
       },
-      "legenda": "la"
+      "legenda": ""
     },
     {
       "imagem": {
@@ -60,7 +63,8 @@
         "w": 1,
         "h": 1,
         "proporcao": 1
-      }
+      },
+      "legenda": ""
     },
     {
       "imagem": {
@@ -70,27 +74,30 @@
         "w": 1,
         "h": 0.1043689320388349,
         "proporcao": 4.065273310013068
-      }
+      },
+      "legenda": ""
     },
     {
       "imagem": {
         "imagem": "/images/uploads/f04-1.100-lota-1.jpg",
-        "x": 0,
+        "x": 0.008028157645919243,
         "y": 0,
-        "w": 1,
-        "h": 1,
-        "proporcao": 0.42428823381204334
-      }
+        "w": 0.9896642875262324,
+        "h": 0.7427184466019418,
+        "proporcao": 0.5653594771241832
+      },
+      "legenda": ""
     },
     {
       "imagem": {
         "imagem": "/images/uploads/tiago_01-cópia.jpg",
         "x": 0,
-        "y": 0,
-        "w": 1,
-        "h": 1,
-        "proporcao": 1
-      }
+        "y": 0.006334168493579678,
+        "w": 0.9982840885188916,
+        "h": 0.9921860319448792,
+        "proporcao": 1.4232098609554777
+      },
+      "legenda": ""
     },
     {
       "imagem": {
@@ -100,7 +107,8 @@
         "w": 1,
         "h": 1,
         "proporcao": 1.3333333333333333
-      }
+      },
+      "legenda": ""
     }
   ],
   "descricao": "My core concept is the wing. It is the common\nelement throughout all the spaces in my project. It\norganizes the program, guides circulation, and is the\ngesture that structures the site. It is both a boundary\nand a connection. It is the backbone of the project.\nEverything located beneath the wing is related\nto the Fish Industry. Everything that happens\nabove the wing connects directly to the city.",
