@@ -49,22 +49,35 @@
       return { larguraNatural: 0, alturaNatural: 0, aArrastar: false };
     },
 
-    componentWillUnmount: function () { this.pararArrasto(); },
+    componentWillUnmount: function () {
+      clearInterval(this.vigia);
+      this.pararArrasto();
+    },
 
-    componentDidUpdate: function (propsAnteriores) {
-      var props = this.props;
-      var caminho = props.mediaPaths && props.mediaPaths.get
-        ? props.mediaPaths.get(props.forID) : null;
-      var anterior = propsAnteriores.mediaPaths && propsAnteriores.mediaPaths.get
-        ? propsAnteriores.mediaPaths.get(propsAnteriores.forID) : null;
+    /* O Decap 3 nao entrega a imagem escolhida a widgets personalizados
+       (mediaPaths fica sempre vazio), por isso a escolha do ficheiro e feita
+       pelo widget nativo "image" ao lado e aqui so se le qual e a imagem. */
+    componentDidMount: function () {
+      var self = this;
+      this.procurarImagem();
+      this.vigia = setInterval(function () { self.procurarImagem(); }, 400);
+    },
 
-      if (caminho && caminho !== anterior) {
-        if (caminho.toJS) caminho = caminho.toJS();
-        if (Array.isArray(caminho)) caminho = caminho[0];
-        if (caminho && caminho !== this.valor().imagem) {
-          this.props.onChange({ imagem: caminho, x: 0, y: 0, w: 1, h: 1, proporcao: 1 });
-          this.setState({ larguraNatural: 0, alturaNatural: 0, ajustado: false });
+    procurarImagem: function () {
+      if (!this.raiz) return;
+      var no = this.raiz, alvo = null;
+      for (var i = 0; i < 8 && no && !alvo; i++) {
+        var imgs = no.querySelectorAll('img');
+        for (var j = 0; j < imgs.length; j++) {
+          if (!this.raiz.contains(imgs[j])) { alvo = imgs[j]; break; }
         }
+        no = no.parentElement;
+      }
+      var origem = alvo ? alvo.getAttribute('src') : '';
+      if (origem !== this.state.origem) {
+        this.setState({
+          origem: origem, larguraNatural: 0, alturaNatural: 0, ajustado: false
+        });
       }
     },
 
