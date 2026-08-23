@@ -2,6 +2,16 @@
   "imagens": [
     {
       "imagem": {
+        "imagem": "/images/uploads/ees-terotomico-vs-tectonico.jpeg",
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1,
+        "proporcao": 1
+      }
+    },
+    {
+      "imagem": {
         "imagem": "/images/uploads/f07-serviços-lota-1.jpg",
         "x": 0.010308327375873394,
         "y": 0.3859223300970873,
