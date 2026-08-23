@@ -90,6 +90,20 @@ img { display: block; max-width: 100%; }
   color: var(--ink);
   cursor: pointer;
   line-height: 1;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Sinaliza que ha algo por tras do nome, para quem nao conhece o site
+   perceber que se pode carregar ali. */
+.marca__ponto {
+  display: inline-block;
+  width: .32em;
+  height: .32em;
+  margin-left: .45em;
+  border-radius: 50%;
+  background: var(--ink);
+  flex: none;
 }
 
 /* ==========================================================================
