@@ -70,37 +70,6 @@
         }
       ],
       "categorias": [
-        "arquitetura"
-      ],
-      "descricao": "Reabilitação de uma casa burguesa do século XIX, na Rua de Brito Capelo, transformada em escola.",
-      "data": "2025-05",
-      "slug": "reabilitacao-casa-burguesa",
-      "local": "matosinhos, porto",
-      "fotografia": "",
-      "disciplina": "arquitetura",
-      "area": "reabilitação",
-      "periodo": "2024/2025",
-      "capa": {
-        "imagem": "",
-        "x": 0,
-        "y": 0,
-        "w": 1,
-        "h": 1,
-        "proporcao": 1
-      },
-      "emCurso": false,
-      "colaboracao": "Ana Soares, Giulio Schiavon, Leonor Ribeiro, Mariana Reina, Raquel Guedes, Tiago Vilar",
-      "orientacao": "",
-      "titulo": "reabilitação de casa burguesa"
-    },
-    {
-      "imagens": [
-        {
-          "imagem": "images/placeholder.svg",
-          "legenda": ""
-        }
-      ],
-      "categorias": [
         "arquitetura profissional"
       ],
       "descricao": "Remodelação de um apartamento no 3.º piso para uma família de cinco pessoas.",
@@ -132,6 +101,37 @@
         }
       ],
       "categorias": [
+        "arquitetura"
+      ],
+      "descricao": "Reabilitação de uma casa burguesa do século XIX, na Rua de Brito Capelo, transformada em escola.",
+      "data": "2025-05",
+      "slug": "reabilitacao-casa-burguesa",
+      "local": "matosinhos, porto",
+      "fotografia": "",
+      "disciplina": "arquitetura",
+      "area": "reabilitação",
+      "periodo": "2024/2025",
+      "capa": {
+        "imagem": "",
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1,
+        "proporcao": 1
+      },
+      "emCurso": false,
+      "colaboracao": "Ana Soares, Giulio Schiavon, Leonor Ribeiro, Mariana Reina, Raquel Guedes, Tiago Vilar",
+      "orientacao": "",
+      "titulo": "reabilitação de casa burguesa"
+    },
+    {
+      "imagens": [
+        {
+          "imagem": "images/placeholder.svg",
+          "legenda": ""
+        }
+      ],
+      "categorias": [
         "teatro"
       ],
       "descricao": "Ator em peça de teatro do grupo TIC TAC.",
@@ -143,10 +143,10 @@
       "area": "",
       "periodo": "2025",
       "capa": {
-        "imagem": "/images/uploads/lapa-bgr.png",
-        "x": -0.16666666666666663,
+        "imagem": "",
+        "x": 0,
         "y": 0,
-        "w": 1.3333333333333333,
+        "w": 1,
         "h": 1,
         "proporcao": 1
       },
