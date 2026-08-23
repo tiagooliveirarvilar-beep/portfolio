@@ -13,6 +13,61 @@
     },
     {
       "imagem": {
+        "imagem": "images/uploads/tiago-a-sorrir.jpg",
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1,
+        "proporcao": 1
+      },
+      "legenda": ""
+    },
+    {
+      "imagem": {
+        "imagem": "images/uploads/tiago-e-guiao.jpg",
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1,
+        "proporcao": 1
+      },
+      "legenda": ""
+    },
+    {
+      "imagem": {
+        "imagem": "images/uploads/tiago-e-miguel-2.jpg",
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1,
+        "proporcao": 1
+      },
+      "legenda": ""
+    },
+    {
+      "imagem": {
+        "imagem": "images/uploads/tiago-miguel-e-analuisa.jpg",
+        "x": 0,
+        "y": -0.25059382422802845,
+        "w": 1,
+        "h": 1.501187648456057,
+        "proporcao": 1
+      },
+      "legenda": ""
+    },
+    {
+      "imagem": {
+        "imagem": "images/uploads/tiago-miguel-e-guiao.jpg",
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1,
+        "proporcao": 1
+      },
+      "legenda": ""
+    },
+    {
+      "imagem": {
         "imagem": "images/uploads/guiao.jpeg",
         "x": 0.0012289085418153434,
         "y": 0,
@@ -23,24 +78,24 @@
       "legenda": ""
     }
   ],
-  "descricao": "Ator em peça de teatro do grupo TIC TAC.",
+  "descricao": "Woyzeck é um homem pobre e explorado que perde progressivamente o contacto com a realidade, movido por vozes, visões e pela pressão de um mundo que não lhe dá lugar. Escrita por Büchner em 1836 e nunca concluída, a peça permanece atual pela pergunta que coloca: somos responsáveis pelos nossos atos, ou somos moldados por aquilo que nos rodeia, a desigualdade, a exploração, a pobreza? Interpretei o Estudante de Artesão, numa encenação que lê as personagens da peça como desdobramentos do próprio Woyzeck, no meu caso, o seu lado mais filosófico, livre e juvenil.eatro do grupo TIC TAC.",
   "data": "2025-06",
-  "local": "",
-  "fotografia": "",
+  "local": "Sala Estúdio Perpétuo, Rua Costa Cabral 128, Porto",
+  "fotografia": "Matheus Borges e Sérgio Jesus",
   "disciplina": "teatro",
   "area": "",
-  "periodo": "2025",
+  "periodo": "março - junho 2025",
   "capa": {
     "imagem": "/images/uploads/p1098927.jpg",
     "x": 0,
-    "y": 0,
+    "y": -0.25,
     "w": 1,
-    "h": 1,
+    "h": 1.5,
     "proporcao": 1
   },
   "categoria": "teatro",
   "emCurso": false,
-  "colaboracao": "",
+  "colaboracao": "TIC TAC",
   "orientacao": "",
-  "titulo": "tic tac"
+  "titulo": "woyzeck, de georg büchner"
 }
