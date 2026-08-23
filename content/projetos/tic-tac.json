@@ -8,16 +8,16 @@
   "area": "",
   "periodo": "2025",
   "capa": {
-    "imagem": "",
+    "imagem": "/images/uploads/p1098927.jpg",
     "x": 0,
     "y": 0,
     "w": 1,
     "h": 1,
     "proporcao": 1
   },
+  "categoria": "teatro",
   "emCurso": false,
   "colaboracao": "",
   "orientacao": "",
-  "titulo": "tic tac",
-  "categoria": "teatro"
+  "titulo": "tic tac"
 }
