@@ -50,30 +50,6 @@
       "slug": "torre-residencial-lapa"
     },
     {
-      "imagens": [],
-      "descricao": "Ator em peça de teatro do grupo TIC TAC.",
-      "data": "2025-12",
-      "local": "",
-      "fotografia": "",
-      "disciplina": "teatro",
-      "area": "",
-      "periodo": "2025",
-      "capa": {
-        "imagem": "/images/uploads/p1098927.jpg",
-        "x": 0,
-        "y": 0,
-        "w": 1,
-        "h": 1,
-        "proporcao": 1
-      },
-      "categoria": "teatro",
-      "emCurso": false,
-      "colaboracao": "",
-      "orientacao": "",
-      "titulo": "tic tac",
-      "slug": "tic-tac"
-    },
-    {
       "imagens": [
         {
           "imagem": {
@@ -199,6 +175,53 @@
       "orientacao": "",
       "titulo": "doca de pesca",
       "slug": "doca-de-pesca"
+    },
+    {
+      "imagens": [
+        {
+          "imagem": {
+            "imagem": "images/uploads/miguel-e-tiago.png",
+            "x": -0.2512218963831867,
+            "y": 0,
+            "w": 1.5024437927663734,
+            "h": 1,
+            "proporcao": 1
+          },
+          "legenda": ""
+        },
+        {
+          "imagem": {
+            "imagem": "images/uploads/guiao.jpeg",
+            "x": -0.09391239792130657,
+            "y": 0,
+            "w": 1.1878247958426131,
+            "h": 1,
+            "proporcao": 1
+          },
+          "legenda": ""
+        }
+      ],
+      "descricao": "Ator em peça de teatro do grupo TIC TAC.",
+      "data": "2025-06",
+      "local": "",
+      "fotografia": "",
+      "disciplina": "teatro",
+      "area": "",
+      "periodo": "2025",
+      "capa": {
+        "imagem": "/images/uploads/p1098927.jpg",
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1,
+        "proporcao": 1
+      },
+      "categoria": "teatro",
+      "emCurso": false,
+      "colaboracao": "",
+      "orientacao": "",
+      "titulo": "tic tac",
+      "slug": "tic-tac"
     },
     {
       "imagens": [],
