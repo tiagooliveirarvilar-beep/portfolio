@@ -3,13 +3,13 @@
   "projetos": [
     {
       "imagens": [],
-      "descricao": "Peça de mobiliário desenhada e construída em carpintaria.",
+      "descricao": "Peça de mobiliário desenhada e pensada por mim e construída sob orientação do meu tio e amigo Zeca: com talento, paciência, e vontade de fazer bem e com rigor.",
       "data": "2026-08",
       "local": "",
       "fotografia": "",
       "disciplina": "carpintaria",
-      "area": "objeto",
-      "periodo": "2024",
+      "area": "",
+      "periodo": "2026",
       "capa": {
         "imagem": "/images/uploads/movel-bgr.png",
         "x": 0.08000000000000002,
@@ -18,11 +18,11 @@
         "h": 1.26,
         "proporcao": 1
       },
+      "categoria": "objetos",
       "emCurso": false,
-      "colaboracao": "",
+      "colaboracao": "José Salvador Oliveira",
       "orientacao": "",
       "titulo": "móvel de apoio",
-      "categoria": "objetos",
       "slug": "movel"
     },
     {
