@@ -1,7 +1,7 @@
 # Configuracao do painel de edicao (Decap CMS).
-# Backend: GitHub OAuth, autenticado por functions/api/auth.js (Cloudflare
-# Pages Function). Ao gravar aqui, faz-se commit automatico no repositorio e
-# o Cloudflare Pages republica o site sozinho.
+# Backend: GitHub OAuth, autenticado por worker/index.js (rota /api/auth do
+# Cloudflare Worker que serve o site). Ao gravar aqui, faz-se commit
+# automatico no repositorio e o Cloudflare republica o site sozinho.
 
 backend:
   name: github

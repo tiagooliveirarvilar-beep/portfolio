@@ -1,21 +1,15 @@
 /**
- * Cloudflare Pages Function: autenticacao GitHub OAuth para o Decap CMS.
+ * Script de entrada do Worker (Cloudflare "Workers com static assets").
  *
- * Cloudflare Pages Functions vivem obrigatoriamente em /functions — este
- * ficheiro em /functions/api/auth.js fica disponivel em /api/auth.
+ * Este projeto foi deploiado no Cloudflare como Worker, nao como Pages
+ * classico — por isso nao existe a convencao /functions. Aqui e so a
+ * ficheiro que decide o que e uma rota dinamica (so /api/auth) e o que e
+ * um ficheiro estatico do site (index.html, css/, js/, admin/, ...).
  *
- * O Decap CMS abre este endpoint numa popup e espera um protocolo proprio
- * (nao e um simples pedido/resposta JSON):
- *
- *   1. Popup abre /api/auth sem "code" -> respondemos com um redirect (302)
- *      para o ecra de autorizacao do GitHub.
- *   2. GitHub reenvia o utilizador para /api/auth?code=...&state=... (o
- *      "Authorization callback URL" registado na OAuth App) -> trocamos o
- *      code por um token e devolvemos uma pagina HTML que faz o handshake
- *      via postMessage com a janela que abriu a popup.
- *
- * O "state" e guardado num cookie de curta duracao só para confirmar que a
- * resposta do GitHub corresponde ao pedido que nós fizemos.
+ * Por omissao (sem "run_worker_first"), o Cloudflare so chama este script
+ * quando o pedido NAO corresponde a nenhum ficheiro estatico existente —
+ * ou seja, todo o resto do site continua a ser servido diretamente, sem
+ * passar por aqui.
  */
 
 function paginaDeErro(mensagem) {
@@ -29,13 +23,24 @@ function estadoAleatorio() {
   return crypto.randomUUID();
 }
 
-export async function onRequestGet(context) {
-  const { request, env } = context;
+/* Autenticacao GitHub OAuth para o Decap CMS (painel /admin).
+   O Decap abre este endpoint numa popup e espera um protocolo proprio
+   (nao e um simples pedido/resposta JSON):
+
+     1. Popup abre /api/auth sem "code" -> respondemos com um redirect (302)
+        para o ecra de autorizacao do GitHub.
+     2. GitHub reenvia o utilizador para /api/auth?code=...&state=... (o
+        "Authorization callback URL" registado na OAuth App) -> trocamos o
+        code por um token e devolvemos uma pagina HTML que faz o handshake
+        via postMessage com a janela que abriu a popup.
+
+   O "state" e guardado num cookie de curta duracao so para confirmar que a
+   resposta do GitHub corresponde ao pedido que nos fizemos. */
+async function autenticar(request, env) {
   const url = new URL(request.url);
   const code = url.searchParams.get('code');
   const redirectUri = `${url.origin}/api/auth`;
 
-  // --- Passo 1: pedido inicial da popup do Decap, sem "code" ainda ---
   if (!code) {
     const state = estadoAleatorio();
     const autorizar = new URL('https://github.com/login/oauth/authorize');
@@ -53,7 +58,6 @@ export async function onRequestGet(context) {
     });
   }
 
-  // --- Passo 2: o GitHub reenviou o utilizador com o "code" ---
   const cookies = request.headers.get('Cookie') || '';
   const estadoGuardado = (cookies.match(/oauth_state=([^;]+)/) || [])[1];
   const estadoRecebido = url.searchParams.get('state');
@@ -83,10 +87,6 @@ export async function onRequestGet(context) {
     return paginaDeErro((tokenData && tokenData.error_description) || 'o GitHub não devolveu um token.');
   }
 
-  // Handshake por postMessage esperado pelo Decap CMS: a popup avisa que
-  // esta pronta, espera uma resposta da janela principal e so ai envia o
-  // token — evita a corrida entre a popup carregar e a janela principal
-  // ainda nao ter o listener pronto.
   const payload = JSON.stringify(JSON.stringify({ token: tokenData.access_token, provider: 'github' }));
 
   const html = `<!doctype html>
@@ -110,3 +110,17 @@ export async function onRequestGet(context) {
     },
   });
 }
+
+export default {
+  async fetch(request, env, ctx) {
+    const url = new URL(request.url);
+
+    if (url.pathname === '/api/auth') {
+      return autenticar(request, env);
+    }
+
+    // Qualquer outro pedido que chegue aqui nao correspondeu a nenhum
+    // ficheiro estatico; devolve o 404 normal do site de assets.
+    return env.ASSETS.fetch(request);
+  },
+};
