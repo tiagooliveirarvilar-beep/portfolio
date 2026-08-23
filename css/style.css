@@ -329,7 +329,7 @@ img { display: block; max-width: 100%; }
   grid-template-columns: 2fr 1fr 1fr;
   gap: 40px;
   font-size: var(--ficha-size);
-  line-height: 1.6;
+  line-height: 1.35;
 }
 
 .ficha h2 {
@@ -343,7 +343,7 @@ img { display: block; max-width: 100%; }
 .ficha p { margin: 0; }
 .ficha dl { margin: 0; }
 .ficha dt { color: var(--gray); }
-.ficha dd { margin: 0 0 .7em; }
+.ficha dd { margin: 0 0 .45em; }
 
 /* Lightbox */
 .lightbox {

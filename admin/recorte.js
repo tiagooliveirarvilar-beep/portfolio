@@ -35,34 +35,56 @@
   var LADO_MINIATURA = 150; /* pre-visualizacao pequena, fora da janela de recorte */
 
   /* Roda a foto 90 graus (sentido horario) desenhando-a rodada num canvas e
-     gravando o resultado como um ficheiro novo — mais simples e robusto do
-     que tentar combinar rotacao com o recorte so em CSS. Devolve o caminho
-     da nova imagem. */
+     gravando o resultado.
+
+     Grava no MESMO formato do original. Antes gravava sempre em PNG, o que
+     tornava a rotacao muito lenta: comprimir uma fotografia grande em PNG
+     demora e produz um ficheiro varias vezes maior, que ainda tem de ser
+     enviado a seguir. Um JPEG volta a sair JPEG; so as imagens PNG, que podem
+     ter fundo transparente, continuam em PNG.
+
+     Devolve tambem as medidas novas (as antigas trocadas): quem chama precisa
+     delas para recalcular a proporcao sem esperar por outro carregamento. */
   function rodarFicheiro(urlAtual, nomeAtual, onPersistMedia, field) {
     return new Promise(function (resolve, reject) {
+      var ehPNG = /\.png$/i.test(nomeAtual || '');
+      var tipo = ehPNG ? 'image/png' : 'image/jpeg';
+      var extensao = ehPNG ? '.png' : '.jpg';
+
       var img = new Image();
       img.onload = function () {
+        var W = img.naturalWidth, H = img.naturalHeight;
         var canvas = document.createElement('canvas');
-        canvas.width = img.naturalHeight;
-        canvas.height = img.naturalWidth;
+        canvas.width = H;
+        canvas.height = W;
         var ctx = canvas.getContext('2d');
         ctx.translate(canvas.width, 0);
         ctx.rotate(Math.PI / 2);
         ctx.drawImage(img, 0, 0);
+
         canvas.toBlob(function (blob) {
           if (!blob) { reject(new Error('canvas.toBlob devolveu vazio')); return; }
-          var base = (nomeAtual || 'foto').replace(/\.[a-z0-9]+$/i, '');
-          var ficheiro = new File([blob], base + '-r' + Date.now() + '.png', { type: 'image/png' });
+          /* Tira um "-r<numero>" anterior, para rodar varias vezes nao ir
+             acumulando sufixos no nome do ficheiro. */
+          var base = (nomeAtual || 'foto').replace(/\.[a-z0-9]+$/i, '').replace(/-r\d+$/, '');
+          var ficheiro = new File([blob], base + '-r' + Date.now() + extensao, { type: tipo });
           onPersistMedia(ficheiro, { field: field }).then(function (resultado) {
             var caminho = resultado && resultado.payload && resultado.payload.path;
             if (!caminho) { reject(new Error('onPersistMedia nao devolveu um caminho')); return; }
-            resolve(caminho);
+            resolve({ caminho: caminho, largura: H, altura: W });
           }, reject);
-        }, 'image/png');
+        }, tipo, ehPNG ? undefined : 0.92);
       };
       img.onerror = function () { reject(new Error('falha ao carregar a imagem para rodar')); };
       img.src = urlAtual;
     });
+  }
+
+  /* Roda o proprio recorte junto com a foto, para o enquadramento escolhido
+     nao se perder. Ao rodar 90 graus no sentido horario o que estava a
+     esquerda passa para cima: um ponto (fx, fy) da foto passa a (1 - fy, fx). */
+  function rodarRecorte(v) {
+    return { x: 1 - v.y - v.h, y: v.x, w: v.h, h: v.w };
   }
 
   function limitar(v, min, max) { return Math.min(max, Math.max(min, v)); }
@@ -240,9 +262,16 @@
       var nome = (v.imagem || 'foto').split('/').pop();
       this.setState({ aRodar: true });
       rodarFicheiro(this.urlDaImagem(v.imagem), nome, this.props.onPersistMedia, this.props.field)
-        .then(function (novoCaminho) {
-          self.setState({ larguraNatural: 0, alturaNatural: 0, ajustado: false, aRodar: false });
-          self.gravar({ imagem: novoCaminho, x: 0, y: 0, w: 1, h: 1 });
+        .then(function (novo) {
+          /* As medidas novas sao gravadas no estado ANTES de guardar o valor.
+             Antes punha-se aqui 0: sem medidas, gravar() nao conseguia
+             calcular a proporcao e reaproveitava a ANTIGA, que ja nao
+             correspondia a foto rodada — era isto que deixava o recorte
+             errado depois de rodar. */
+          var r = rodarRecorte(v);
+          self.setState({ larguraNatural: novo.largura, alturaNatural: novo.altura, ajustado: true, aRodar: false }, function () {
+            self.gravar({ imagem: novo.caminho, x: r.x, y: r.y, w: r.w, h: r.h });
+          });
         })
         .catch(function (erro) {
           console.error('recorte.js: falha ao rodar a imagem.', erro);

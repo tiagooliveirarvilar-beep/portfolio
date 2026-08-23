@@ -50,7 +50,10 @@ collections:
       preview: false
     fields:
       - { label: "Título (sempre em minúsculas)", name: "titulo", widget: "string", pattern: ['^[^A-ZÀ-Ý]*$', "Usa só minúsculas, mesmo na primeira letra."] }
-      - { label: "Data", name: "data", widget: "datetime", format: "YYYY-MM", date_format: "MMMM [de] YYYY", time_format: false, required: false, hint: "Decide a posição na home: mais recente primeiro." }
+      # Caixa de texto simples em vez de calendario: o calendario mostrava a
+      # data ja escrita por extenso ("setembro de 2025") e tentar escrever ali
+      # por cima falhava, porque esse texto nao volta a ser lido como data.
+      - { label: "Data", name: "data", widget: "string", required: false, pattern: ['^$|^\d{4}-(0[1-9]|1[0-2])$', "Escreve no formato ano-mês, por exemplo 2025-09."], hint: "Formato ano-mês, por exemplo 2025-09. No site aparece por extenso (\"setembro de 2025\"). Decide a posição na home: mais recente primeiro." }
       - { label: "Projeto em curso", name: "emCurso", widget: "boolean", default: false, hint: "Se ligado, a home mostra 'em curso' em vez da data." }
       - { label: "Categoria", name: "categoria", widget: "categoria", required: false, hint: "Escolhe da lista ou escreve uma categoria nova." }
       - { label: "Imagem de capa", name: "capa", widget: "recorte", required: false, forcarQuadrado: true, hint: "A capa é sempre quadrada." }
