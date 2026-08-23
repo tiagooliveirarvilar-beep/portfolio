@@ -100,7 +100,7 @@ img { display: block; max-width: 100%; }
   display: inline-block;
   width: .32em;
   height: .32em;
-  margin-left: .45em;
+  margin-right: .45em;
   border-radius: 50%;
   background: var(--ink);
   flex: none;

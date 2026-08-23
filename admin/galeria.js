@@ -26,6 +26,37 @@
   var MARGEM = 90;
   var LADO_MINIATURA = 130;
 
+  /* Roda a foto 90 graus (sentido horario) desenhando-a rodada num canvas e
+     gravando o resultado como um ficheiro novo — mais simples e robusto do
+     que tentar combinar rotacao com o recorte so em CSS. Devolve o caminho
+     da nova imagem. */
+  function rodarFicheiro(urlAtual, nomeAtual, onPersistMedia, field) {
+    return new Promise(function (resolve, reject) {
+      var img = new Image();
+      img.onload = function () {
+        var canvas = document.createElement('canvas');
+        canvas.width = img.naturalHeight;
+        canvas.height = img.naturalWidth;
+        var ctx = canvas.getContext('2d');
+        ctx.translate(canvas.width, 0);
+        ctx.rotate(Math.PI / 2);
+        ctx.drawImage(img, 0, 0);
+        canvas.toBlob(function (blob) {
+          if (!blob) { reject(new Error('canvas.toBlob devolveu vazio')); return; }
+          var base = (nomeAtual || 'foto').replace(/\.[a-z0-9]+$/i, '');
+          var ficheiro = new File([blob], base + '-r' + Date.now() + '.png', { type: 'image/png' });
+          onPersistMedia(ficheiro, { field: field }).then(function (resultado) {
+            var caminho = resultado && resultado.payload && resultado.payload.path;
+            if (!caminho) { reject(new Error('onPersistMedia nao devolveu um caminho')); return; }
+            resolve(caminho);
+          }, reject);
+        }, 'image/png');
+      };
+      img.onerror = function () { reject(new Error('falha ao carregar a imagem para rodar')); };
+      img.src = urlAtual;
+    });
+  }
+
   function limitar(v, min, max) { return Math.min(max, Math.max(min, v)); }
   function num(v, omissao) { var n = parseFloat(v); return isFinite(n) ? n : omissao; }
 
@@ -210,6 +241,23 @@
       var m = this.ajusteTotal();
       var v = this.valorEmEdicao();
       this.gravarEmEdicao({ imagem: v.imagem, w: m.w, h: m.h, x: (1 - m.w) / 2, y: (1 - m.h) / 2 });
+    },
+
+    rodar90: function (evento) {
+      evento.preventDefault();
+      var self = this;
+      var v = this.valorEmEdicao();
+      var nome = (v.imagem || 'foto').split('/').pop();
+      this.setState({ aRodar: true });
+      rodarFicheiro(this.urlDaImagem(v.imagem), nome, this.props.onPersistMedia, this.props.field)
+        .then(function (novoCaminho) {
+          self.setState({ larguraNatural: 0, alturaNatural: 0, aRodar: false });
+          self.gravarEmEdicao({ imagem: novoCaminho, x: 0, y: 0, w: 1, h: 1 });
+        })
+        .catch(function (erro) {
+          console.error('galeria.js: falha ao rodar a imagem.', erro);
+          self.setState({ aRodar: false });
+        });
     },
 
     aoCarregarImagem: function (evento) {
@@ -418,6 +466,9 @@
         h('div', { key: 'palco' }, palco),
         h('div', { key: 'acoes', style: { marginTop: '14px', display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' } }, [
           h('button', { key: 'tudo', style: botao, onClick: this.verTudo }, 'Ver a foto toda'),
+          h('button', {
+            key: 'rodar', style: botao, onClick: this.rodar90, disabled: !!this.state.aRodar
+          }, this.state.aRodar ? 'A rodar…' : 'Rodar 90°'),
           h('button', {
             key: 'fechar',
             style: Object.assign({}, botao, { fontWeight: 600, background: '#ad0000', color: '#fff', borderColor: '#ad0000' }),
