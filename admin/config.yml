@@ -1,12 +1,13 @@
 # Configuracao do painel de edicao (Decap CMS).
-# Backend: Netlify Identity + Git Gateway — login proprio, sem conta no GitHub
-# nem custos. Ao gravar aqui, faz-se commit automatico no repositorio e o
-# Netlify republica o site sozinho.
+# Backend: GitHub OAuth, autenticado por functions/api/auth.js (Cloudflare
+# Pages Function). Ao gravar aqui, faz-se commit automatico no repositorio e
+# o Cloudflare Pages republica o site sozinho.
 
 backend:
   name: github
   repo: tiagooliveirarvilar-beep/portfolio
   branch: main
+  base_url: https://portfolio.tiagooliveirarvilar.workers.dev
   auth_endpoint: api/auth
 
 # So tem efeito em localhost (com "npx decap-server" a correr), para poder
