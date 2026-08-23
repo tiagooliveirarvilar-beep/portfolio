@@ -169,16 +169,16 @@
         },
         {
           "imagem": {
-            "imagem": "/images/uploads/tiago_01-cópia.jpg",
+            "imagem": "/images/uploads/tiago_04-cópia.jpg",
             "x": 0,
             "y": 0,
             "w": 1,
             "h": 1,
-            "proporcao": 1
+            "proporcao": 1.3333333333333333
           }
         }
       ],
-      "descricao": "Investigação sobre a vida e a obra do arquiteto Alberto Ponis, com consulta prevista ao Archivio Ponis Zalaffi, em Palau, Sardenha.",
+      "descricao": "My core concept is the wing. It is the common\nelement throughout all the spaces in my project. It\norganizes the program, guides circulation, and is the\ngesture that structures the site. It is both a boundary\nand a connection. It is the backbone of the project.\nEverything located beneath the wing is related\nto the Fish Industry. Everything that happens\nabove the wing connects directly to the city.",
       "data": "2025-09",
       "local": "matosinhos, porto, portugal",
       "fotografia": "",
