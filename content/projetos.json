@@ -82,7 +82,27 @@
             "y": 0,
             "w": 1,
             "h": 1,
-            "proporcao": 1
+            "proporcao": 1.7304582210242587
+          }
+        },
+        {
+          "imagem": {
+            "imagem": "/images/uploads/f01-1.jpg",
+            "x": 0,
+            "y": 0.036407766990291246,
+            "w": 0.9942793971819293,
+            "h": 0.49271844660194175,
+            "proporcao": 0.8561908981801076
+          }
+        },
+        {
+          "imagem": {
+            "imagem": "/images/uploads/f01-1.jpg",
+            "x": 0,
+            "y": 0.6966019417475728,
+            "w": 1,
+            "h": 0.20873786407766992,
+            "proporcao": 2.032636655006533
           }
         },
         {
@@ -101,20 +121,60 @@
             "imagem": "/images/uploads/f05-1.20-lota-1.jpg",
             "x": 0,
             "y": 0.014563106796116498,
-            "w": 0.9999999999999999,
-            "h": 0.5194174757281553,
-            "proporcao": 0.8168539828530927
+            "w": 1,
+            "h": 0.7111650485436893,
+            "proporcao": 0.5966100762135217
           },
           "legenda": "la"
         },
         {
           "imagem": {
-            "imagem": "/images/uploads/f01-1.jpg",
+            "imagem": "/images/uploads/f02-1.jpg",
             "x": 0,
-            "y": 0.6966019417475728,
+            "y": 0,
             "w": 1,
-            "h": 0.20873786407766992,
-            "proporcao": 2.032636655006533
+            "h": 1,
+            "proporcao": 1
+          }
+        },
+        {
+          "imagem": {
+            "imagem": "/images/uploads/f04-1.100-lota-1.jpg",
+            "x": 0,
+            "y": 0.6456310679611651,
+            "w": 1,
+            "h": 0.1043689320388349,
+            "proporcao": 4.065273310013068
+          }
+        },
+        {
+          "imagem": {
+            "imagem": "/images/uploads/f04-1.100-lota-1.jpg",
+            "x": 0,
+            "y": 0,
+            "w": 1,
+            "h": 1,
+            "proporcao": 0.42428823381204334
+          }
+        },
+        {
+          "imagem": {
+            "imagem": "/images/uploads/tiago_01-cópia.jpg",
+            "x": 0,
+            "y": 0,
+            "w": 1,
+            "h": 1,
+            "proporcao": 1
+          }
+        },
+        {
+          "imagem": {
+            "imagem": "/images/uploads/tiago_01-cópia.jpg",
+            "x": 0,
+            "y": 0,
+            "w": 1,
+            "h": 1,
+            "proporcao": 1
           }
         }
       ],
