@@ -98,6 +98,33 @@
       this.props.onRemoveMediaControl(this.controlID);
     },
 
+    /* SEM ISTO A IMAGEM ESCOLHIDA NUNCA CHEGA AQUI.
+
+       O componente Widget do Decap (que embrulha todos os widgets) so deixa
+       passar props novas para baixo quando muda 'value', 'classNameWrapper'
+       ou 'hasActiveStyle'. A imagem escolhida na biblioteca chega em
+       'mediaPaths', que NAO esta nessa lista — por isso o Widget bloqueava a
+       atualizacao e o componentDidUpdate aqui em baixo nunca via o caminho
+       novo. O Decap resolve isto indo buscar o shouldComponentUpdate do
+       proprio widget (processInnerControlRef em Widget.js) e usando-o em vez
+       do dele; e o que o widget oficial de imagem faz.
+
+       Cuidado com os dois chamadores, que tem assinaturas diferentes:
+       o React chama (nextProps, nextState); o Widget do Decap chama so
+       (nextProps). Dai o teste ao nextState — para nunca bloquear os
+       re-renders do proprio controlo (ex. enquanto se arrasta o recorte). */
+    shouldComponentUpdate: function (nextProps, nextState) {
+      if (nextState !== undefined) return true;
+
+      if (this.props.value !== nextProps.value) return true;
+      if (this.props.classNameWrapper !== nextProps.classNameWrapper) return true;
+      if (this.props.hasActiveStyle !== nextProps.hasActiveStyle) return true;
+      if (this.props.getAsset !== nextProps.getAsset) return true;
+
+      var mediaPath = nextProps.mediaPaths && nextProps.mediaPaths.get(this.controlID);
+      return !!mediaPath;
+    },
+
     /* Padrao oficial do Decap: depois de escolher/enviar uma imagem na
        biblioteca, o caminho fica disponivel em mediaPaths, indexado pelo
        controlID que passamos a onOpenMediaLibrary — nunca por forID. */
