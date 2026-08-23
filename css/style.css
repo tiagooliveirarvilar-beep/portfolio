@@ -228,13 +228,17 @@ img { display: block; max-width: 100%; }
   object-fit: contain;
 }
 
+/* A largura maxima e o espaco que existe MESMO entre o lado direito da foto
+   (que esta centrada) e a margem da pagina. Com um valor fixo como 34vw, um
+   titulo comprido passava por cima da foto em ecras estreitos — acontecia em
+   tablets e janelas pequenas, nao so no telemovel. */
 .projeto__info {
   position: absolute;
   right: var(--margem);
   top: 50%;
   transform: translateY(-50%);
   text-align: right;
-  max-width: 34vw;
+  max-width: min(34vw, calc(50vw - var(--foto-home) / 2 - var(--margem) - 12px));
 }
 
 /* Sao <span> dentro do <a>, por isso precisam mesmo de display:block para a
@@ -374,9 +378,45 @@ img { display: block; max-width: 100%; }
     --conteudo-pad: 24px;
     --img-largura: 78%;
     --sobre-size: 10px;
+    --num-size: clamp(22px, 6vw, 30px);
   }
 
-  .projeto__info { max-width: 26vw; }
+  /* Em ecra estreito os tres elementos deixam de ser posicionados de forma
+     independente e passam a uma linha flexivel: o numero e o titulo ocupam o
+     que precisam e a foto fica com o espaco que sobra. Posicionados de forma
+     independente, o titulo (encostado a direita) entrava por cima da foto
+     (centrada), porque nada garantia que os dois nao se cruzassem. */
+  .projeto {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 var(--margem);
+  }
+
+  .projeto__num,
+  .projeto__link,
+  .projeto__info {
+    position: static;
+    transform: none;
+    top: auto;
+    left: auto;
+    right: auto;
+  }
+
+  .projeto__num { flex: none; }
+
+  .projeto__link {
+    flex: 1 1 auto;
+    min-width: 0;                    /* deixa mesmo encolher dentro do flex */
+    width: auto;
+    max-width: var(--foto-home);     /* nunca maior do que era */
+  }
+
+  .projeto__info {
+    flex: none;
+    max-width: 30vw;
+  }
+
   .ficha { grid-template-columns: 1fr; gap: 24px; }
   .ficha h2 { margin-bottom: 0; }
 }
