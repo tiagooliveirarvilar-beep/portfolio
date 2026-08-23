@@ -54,7 +54,7 @@ collections:
                 widget: "list"
                 required: false
                 fields:
-                  - { label: "Imagem", name: "imagem", widget: "recorte", hint: "Prefere-se quadrada. Se desligares 'manter quadrado', todas continuam com a mesma largura na página — só a altura muda." }
+                  - { label: "Imagem", name: "imagem", widget: "recorte", hint: "Recorte livre: escolhe a parte que interessa, com a altura que quiseres. Na página saem todas com a mesma largura, centradas." }
                   - { label: "Legenda", name: "legenda", widget: "string", required: false }
               - { label: "Descrição curta (ficha técnica)", name: "descricao", widget: "text", required: false }
               - { label: "Local", name: "local", widget: "string", required: false }
