@@ -124,29 +124,32 @@ img { display: block; max-width: 100%; }
 
 .perfil[hidden] { display: none; }
 
-/* Foto de retrato mesmo por cima da marca, na mesma coluna de 1cm. */
-.perfil__foto {
-  position: absolute;
-  left: var(--margem);
-  bottom: calc(var(--margem) + 2.4em);
-  width: 75px;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
+/* Foto de retrato no centro, com texto ao lado direito. */
+.perfil {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4em;
 }
 
-/* Contacto por cima, texto do Sobre Mim em baixo — ambos encostados ao fundo,
-   como nos dois ecras aprovados. */
+.perfil__foto {
+  position: static;
+  width: 200px;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Contacto e Sobre Mim ao lado da foto. */
 .perfil__conteudo {
-  position: absolute;
-  left: 44%;
-  right: var(--margem);
-  bottom: var(--margem);
+  position: static;
   display: flex;
   flex-direction: column;
   gap: 2.4em;
+  max-width: 400px;
 }
 
-.perfil__contacto { text-align: right; }
+.perfil__contacto { text-align: left; }
 .perfil__contacto ul { list-style: none; margin: 0; padding: 0; }
 
 .perfil__contacto li {
@@ -374,7 +377,6 @@ img { display: block; max-width: 100%; }
   }
 
   .projeto__info { max-width: 26vw; }
-  .perfil__conteudo { left: 30%; }
   .ficha { grid-template-columns: 1fr; gap: 24px; }
   .ficha h2 { margin-bottom: 0; }
 }
