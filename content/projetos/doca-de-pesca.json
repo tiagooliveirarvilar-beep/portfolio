@@ -1,8 +1,41 @@
 {
-  "imagens": [],
+  "imagens": [
+    {
+      "imagem": {
+        "imagem": "/images/uploads/f07-serviços-lota-1.jpg",
+        "x": 0.010308327375873394,
+        "y": 0.3859223300970873,
+        "w": 0.9828194543735443,
+        "h": 0.575242718446602,
+        "proporcao": 1.2068643275847422
+      },
+      "legenda": "bçmm"
+    },
+    {
+      "imagem": {
+        "imagem": "/images/uploads/f05-1.20-lota-1.jpg",
+        "x": 0,
+        "y": 0.014563106796116498,
+        "w": 0.9999999999999999,
+        "h": 0.5194174757281553,
+        "proporcao": 0.8168539828530927
+      },
+      "legenda": "la"
+    },
+    {
+      "imagem": {
+        "imagem": "/images/uploads/f01-1.jpg",
+        "x": 0,
+        "y": 0.6966019417475728,
+        "w": 1,
+        "h": 0.20873786407766992,
+        "proporcao": 2.032636655006533
+      }
+    }
+  ],
   "descricao": "Investigação sobre a vida e a obra do arquiteto Alberto Ponis, com consulta prevista ao Archivio Ponis Zalaffi, em Palau, Sardenha.",
   "data": "2025-09",
-  "local": "palau, sardenha",
+  "local": "matosinhos, porto, portugal",
   "fotografia": "",
   "disciplina": "investigação",
   "area": "tese",
@@ -15,9 +48,9 @@
     "h": 2.1875,
     "proporcao": 1
   },
+  "categoria": "arquitetura",
   "emCurso": true,
   "colaboracao": "",
   "orientacao": "",
-  "titulo": "doca de pesca",
-  "categoria": "investigação"
+  "titulo": "doca de pesca"
 }
