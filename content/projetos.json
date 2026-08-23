@@ -117,23 +117,23 @@
         },
         {
           "imagem": {
-            "imagem": "/images/uploads/tiago_01-cópia.jpg",
-            "x": 0,
-            "y": 0.006334168493579678,
-            "w": 0.9982840885188916,
-            "h": 0.9921860319448792,
-            "proporcao": 1.4232098609554777
-          },
-          "legenda": ""
-        },
-        {
-          "imagem": {
             "imagem": "/images/uploads/tiago_04-cópia.jpg",
             "x": 0,
             "y": 0,
             "w": 1,
             "h": 1,
             "proporcao": 1.3333333333333333
+          },
+          "legenda": ""
+        },
+        {
+          "imagem": {
+            "imagem": "/images/uploads/tiago_01-cópia.jpg",
+            "x": 0,
+            "y": 0.006334168493579678,
+            "w": 0.9982840885188916,
+            "h": 0.9921860319448792,
+            "proporcao": 1.4232098609554777
           },
           "legenda": ""
         },
