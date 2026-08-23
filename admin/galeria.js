@@ -299,6 +299,28 @@
         return;
       }
 
+      /* Lados: so mexe num eixo de cada vez, mantendo o lado oposto fixo. */
+      if (a.modo === 'topo') {
+        var ancoraTopo = v.y + v.h;
+        var novoYt = limitar(v.y + dyFracao, ancoraTopo - MAXIMO, ancoraTopo - MINIMO);
+        this.gravarEmEdicao({ imagem: v.imagem, w: v.w, h: ancoraTopo - novoYt, x: v.x, y: novoYt });
+        return;
+      }
+      if (a.modo === 'base') {
+        this.gravarEmEdicao({ imagem: v.imagem, w: v.w, h: limitar(v.h + dyFracao, MINIMO, MAXIMO), x: v.x, y: v.y });
+        return;
+      }
+      if (a.modo === 'esquerda') {
+        var ancoraEsq = v.x + v.w;
+        var novoXe = limitar(v.x + dxFracao, ancoraEsq - MAXIMO, ancoraEsq - MINIMO);
+        this.gravarEmEdicao({ imagem: v.imagem, w: ancoraEsq - novoXe, h: v.h, x: novoXe, y: v.y });
+        return;
+      }
+      if (a.modo === 'direita') {
+        this.gravarEmEdicao({ imagem: v.imagem, w: limitar(v.w + dxFracao, MINIMO, MAXIMO), h: v.h, x: v.x, y: v.y });
+        return;
+      }
+
       var ancoraX, ancoraY, movX, movY;
       if (a.modo === 'br') { ancoraX = v.x; ancoraY = v.y; movX = v.x + v.w + dxFracao; movY = v.y + v.h + dyFracao; }
       if (a.modo === 'bl') { ancoraX = v.x + v.w; ancoraY = v.y; movX = v.x + dxFracao; movY = v.y + v.h + dyFracao; }
@@ -430,6 +452,17 @@
         });
       }
 
+      /* Pegas nos 4 lados: redimensionam so um eixo de cada vez. Barras finas
+         com uma folga maior do que a largura visivel, para serem faceis de
+         agarrar com o rato. */
+      var ESPESSURA = 10, FOLGA = 6;
+      function lado(nome, esquerda, topo, largura, altura, cursor) {
+        return h('div', {
+          key: nome, onMouseDown: self.aoPremirCanto(nome),
+          style: { position: 'absolute', left: esquerda, top: topo, width: largura, height: altura, cursor: cursor }
+        });
+      }
+
       var palco = h('div', {
         style: { position: 'relative', width: d.palcoW + 'px', height: d.palcoH + 'px', userSelect: 'none', margin: '0 auto' }
       }, [
@@ -449,7 +482,11 @@
           style: { position: 'absolute', left: retX, top: retY, width: retW, height: retH, cursor: this.state.aArrastar === 'mover' ? 'grabbing' : 'grab' }
         }),
         canto('tl', retX, retY), canto('tr', retX + retW, retY),
-        canto('bl', retX, retY + retH), canto('br', retX + retW, retY + retH)
+        canto('bl', retX, retY + retH), canto('br', retX + retW, retY + retH),
+        lado('topo', retX + FOLGA, retY - ESPESSURA / 2, Math.max(0, retW - FOLGA * 2), ESPESSURA, 'ns-resize'),
+        lado('base', retX + FOLGA, retY + retH - ESPESSURA / 2, Math.max(0, retW - FOLGA * 2), ESPESSURA, 'ns-resize'),
+        lado('esquerda', retX - ESPESSURA / 2, retY + FOLGA, ESPESSURA, Math.max(0, retH - FOLGA * 2), 'ew-resize'),
+        lado('direita', retX + retW - ESPESSURA / 2, retY + FOLGA, ESPESSURA, Math.max(0, retH - FOLGA * 2), 'ew-resize')
       ]);
 
       return h('div', {
@@ -462,7 +499,7 @@
         }
       }, [
         h('p', { key: 'dica', style: { color: '#fff', fontSize: '14px', margin: '0 0 12px', textAlign: 'center' } },
-          'Arrasta o retângulo para mover; puxa os cantos para redimensionar. A altura é livre.'),
+          'Arrasta o retângulo para mover; puxa um lado para redimensionar só esse, ou um canto para os dois de uma vez.'),
         h('div', { key: 'palco' }, palco),
         h('div', { key: 'acoes', style: { marginTop: '14px', display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' } }, [
           h('button', { key: 'tudo', style: botao, onClick: this.verTudo }, 'Ver a foto toda'),

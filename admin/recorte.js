@@ -331,6 +331,28 @@
         return;
       }
 
+      /* Lados: so mexe num eixo de cada vez, mantendo o lado oposto fixo. */
+      if (a.modo === 'topo') {
+        var ancoraTopo = v.y + v.h;
+        var novoYt = limitar(v.y + dyFracao, ancoraTopo - MAXIMO, ancoraTopo - MINIMO);
+        this.gravar({ imagem: v.imagem, w: v.w, h: ancoraTopo - novoYt, x: v.x, y: novoYt });
+        return;
+      }
+      if (a.modo === 'base') {
+        this.gravar({ imagem: v.imagem, w: v.w, h: limitar(v.h + dyFracao, MINIMO, MAXIMO), x: v.x, y: v.y });
+        return;
+      }
+      if (a.modo === 'esquerda') {
+        var ancoraEsq = v.x + v.w;
+        var novoXe = limitar(v.x + dxFracao, ancoraEsq - MAXIMO, ancoraEsq - MINIMO);
+        this.gravar({ imagem: v.imagem, w: ancoraEsq - novoXe, h: v.h, x: novoXe, y: v.y });
+        return;
+      }
+      if (a.modo === 'direita') {
+        this.gravar({ imagem: v.imagem, w: limitar(v.w + dxFracao, MINIMO, MAXIMO), h: v.h, x: v.x, y: v.y });
+        return;
+      }
+
       /* Cantos: ancora = canto oposto ao que esta a ser arrastado, que fica
          fixo no sitio. dx/dy sao a distancia (com sinal) desde a ancora ate
          a posicao atual do rato, em fracao da foto. */
@@ -485,6 +507,23 @@
         });
       }
 
+      /* Pegas nos 4 lados: redimensionam so um eixo de cada vez, sem mexer
+         no outro — so fazem sentido em modo livre (quadrado exigiria mexer
+         nos dois eixos ao mesmo tempo). Barras finas ao longo de cada lado,
+         com uma folga maior do que a largura visivel para serem faceis de
+         agarrar com o rato. */
+      var ESPESSURA = 10, FOLGA = 6;
+      function lado(nome, esquerda, topo, largura, altura, cursor) {
+        return h('div', {
+          key: nome,
+          onMouseDown: self.aoPremirCanto(nome),
+          style: {
+            position: 'absolute', left: esquerda, top: topo, width: largura, height: altura,
+            cursor: cursor
+          }
+        });
+      }
+
       var palco = h('div', {
         style: {
           position: 'relative',
@@ -529,7 +568,11 @@
         canto('tl', retX, retY),
         canto('tr', retX + retW, retY),
         canto('bl', retX, retY + retH),
-        canto('br', retX + retW, retY + retH)
+        canto('br', retX + retW, retY + retH),
+        this.ehQuadrado() ? null : lado('topo', retX + FOLGA, retY - ESPESSURA / 2, Math.max(0, retW - FOLGA * 2), ESPESSURA, 'ns-resize'),
+        this.ehQuadrado() ? null : lado('base', retX + FOLGA, retY + retH - ESPESSURA / 2, Math.max(0, retW - FOLGA * 2), ESPESSURA, 'ns-resize'),
+        this.ehQuadrado() ? null : lado('esquerda', retX - ESPESSURA / 2, retY + FOLGA, ESPESSURA, Math.max(0, retH - FOLGA * 2), 'ew-resize'),
+        this.ehQuadrado() ? null : lado('direita', retX + retW - ESPESSURA / 2, retY + FOLGA, ESPESSURA, Math.max(0, retH - FOLGA * 2), 'ew-resize')
       ]);
 
       return h('div', {
@@ -547,7 +590,7 @@
           style: { color: '#fff', fontSize: '14px', margin: '0 0 12px', textAlign: 'center' }
         }, this.ehQuadrado()
             ? 'Arrasta o retângulo para mover; puxa os cantos para redimensionar. A capa é sempre quadrada.'
-            : 'Arrasta o retângulo para mover; puxa os cantos para redimensionar. A altura é livre.'),
+            : 'Arrasta o retângulo para mover; puxa os cantos para redimensionar os dois lados, ou um lado para redimensionar só esse.'),
         h('div', { key: 'palco' }, palco),
         h('div', {
           key: 'acoes',
