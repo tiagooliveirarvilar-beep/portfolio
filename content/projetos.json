@@ -294,18 +294,18 @@
       "area": "reabilitação",
       "periodo": "2024/2025",
       "capa": {
-        "imagem": "",
+        "imagem": "/images/uploads/1000169244.png",
         "x": 0,
         "y": 0,
         "w": 1,
         "h": 1,
         "proporcao": 1
       },
+      "categoria": "arquitetura",
       "emCurso": false,
       "colaboracao": "Ana Soares, Giulio Schiavon, Leonor Ribeiro, Mariana Reina, Raquel Guedes, Tiago Vilar",
       "orientacao": "",
       "titulo": "reabilitação de casa burguesa",
-      "categoria": "arquitetura",
       "slug": "reabilitacao-casa-burguesa"
     },
     {
