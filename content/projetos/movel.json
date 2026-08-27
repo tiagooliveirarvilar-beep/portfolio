@@ -1,5 +1,39 @@
 {
-  "imagens": [],
+  "imagens": [
+    {
+      "imagem": {
+        "imagem": "images/uploads/img-20260424-wa0027.jpg",
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1,
+        "proporcao": 1
+      },
+      "legenda": "modelo tridimensional"
+    },
+    {
+      "imagem": {
+        "imagem": "images/uploads/20260819_121818-r1787870915953.jpg",
+        "x": 0,
+        "y": -0.16666666666666674,
+        "w": 1,
+        "h": 1.3333333333333333,
+        "proporcao": 1
+      },
+      "legenda": ""
+    },
+    {
+      "imagem": {
+        "imagem": "images/uploads/20260820_125020.jpg",
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1,
+        "proporcao": 1
+      },
+      "legenda": ""
+    }
+  ],
   "descricao": "peça de mobiliário desenhada e pensada por mim e construída sob orientação do meu tio e amigo Zeca: com talento, paciência, e vontade de fazer bem e com rigor.\na partir da necessidade de ter um local para apoiar o microondas.......\nexecutado em madeira de pinho",
   "data": "2026-08",
   "local": "",
