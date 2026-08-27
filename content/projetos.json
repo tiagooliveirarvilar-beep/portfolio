@@ -13,6 +13,19 @@
       },
       "titulo": "estudo bloco 8 siza vieira",
       "data": "2026-09",
+      "imagens": [
+        {
+          "imagem": {
+            "imagem": "images/uploads/desenhos_1_tiago_vilar_sem_fundo.png",
+            "x": 0,
+            "y": 0,
+            "w": 1,
+            "h": 1,
+            "proporcao": 1
+          },
+          "legenda": ""
+        }
+      ],
       "slug": "estudo-bloco-8-siza-vieira"
     },
     {
