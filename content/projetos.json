@@ -32,12 +32,23 @@
       "imagens": [
         {
           "imagem": {
-            "imagem": "images/uploads/img-20260424-wa0027.jpg",
-            "x": 0,
-            "y": 0,
+            "imagem": "images/uploads/movel-bgr.png",
+            "x": 0.0048543689320388345,
+            "y": -0.2766990291262136,
             "w": 1,
-            "h": 1,
+            "h": 1.5,
             "proporcao": 1
+          },
+          "legenda": ""
+        },
+        {
+          "imagem": {
+            "imagem": "images/uploads/img-20260424-wa0027.jpg",
+            "x": 0.030362568167224158,
+            "y": -0.001013625330979706,
+            "w": 0.7520390266343362,
+            "h": 0.9971728817299207,
+            "proporcao": 1.0851923050327077
           },
           "legenda": "modelo tridimensional"
         },
