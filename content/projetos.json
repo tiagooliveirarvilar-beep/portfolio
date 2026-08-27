@@ -2,6 +2,20 @@
   "_gerado": "Ficheiro gerado automaticamente por scripts/gerar-lista.js. Nao editar a mao — edita as fichas em content/projetos/ pelo painel /admin.",
   "projetos": [
     {
+      "emCurso": false,
+      "capa": {
+        "imagem": "/images/uploads/ham.png",
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1,
+        "proporcao": 1
+      },
+      "titulo": "estudo bloco 8 siza vieira",
+      "data": "2026-09",
+      "slug": "estudo-bloco-8-siza-vieira"
+    },
+    {
       "imagens": [],
       "descricao": "peça de mobiliário desenhada e pensada por mim e construída sob orientação do meu tio e amigo Zeca: com talento, paciência, e vontade de fazer bem e com rigor.\na partir da necessidade de ter um local para apoiar o microondas.......\nexecutado em madeira de pinho",
       "data": "2026-08",
