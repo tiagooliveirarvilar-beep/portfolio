@@ -13,22 +13,11 @@
   "imagens": [
     {
       "imagem": {
-        "imagem": "images/uploads/desenhos_1_tiago_vilar_sem_fundo.png",
+        "imagem": "images/uploads/desenhos_1_tiago_vilar_vetor.png",
         "x": 0,
         "y": 0,
         "w": 1,
         "h": 1,
-        "proporcao": 1
-      },
-      "legenda": ""
-    },
-    {
-      "imagem": {
-        "imagem": "images/uploads/desenhos_1_tiago_vilar_vetor.png",
-        "x": 0,
-        "y": -0.2431640625,
-        "w": 1,
-        "h": 1.486328125,
         "proporcao": 1
       },
       "legenda": ""
