@@ -49,4 +49,31 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add content/projetos.json
           git commit -m "Atualizar lista de projetos (automatico)"
-          git push
+
+          # Se duas gravacoes no painel disparam este workflow em poucos
+          # segundos, o push pode chegar depois de outro commit ja ter
+          # mudado o main (o concurrency acima serializa as execucoes deste
+          # workflow, mas nao impede um push direto do painel de entrar no
+          # meio). Sem isto, esse push falhava e ficava tudo por gravar ate
+          # a proxima edicao por acaso disparar tudo de novo — era isto que
+          # fazia o site nao atualizar de vez em quando. Agora tenta-se de
+          # novo, buscando o commit novo e reconstruindo a lista outra vez
+          # em cima dele.
+          for tentativa in 1 2 3 4 5; do
+            if git push; then
+              echo "Publicado."
+              exit 0
+            fi
+            echo "Push falhou (tentativa $tentativa); a sincronizar com o remoto e a tentar de novo."
+            git fetch origin main
+            git reset --soft origin/main
+            node scripts/gerar-lista.js
+            if git diff --quiet -- content/projetos.json; then
+              echo "Depois de sincronizar, a lista ja estava atualizada por outra execucao."
+              exit 0
+            fi
+            git add content/projetos.json
+            git commit -m "Atualizar lista de projetos (automatico)"
+          done
+          echo "Nao consegui publicar depois de 5 tentativas."
+          exit 1

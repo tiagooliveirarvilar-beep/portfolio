@@ -116,7 +116,11 @@
       };
     },
 
+    componentDidMount: function () { this._montado = true; },
+
     componentWillUnmount: function () {
+      this._montado = false;
+      if (this._temporizadorAsset) clearTimeout(this._temporizadorAsset);
       this.pararArrasto();
       window.removeEventListener('keydown', this.aoTeclar);
     },
@@ -393,11 +397,42 @@
       if (this.state.aArrastar) this.setState({ aArrastar: null });
     },
 
+    /* O getAsset do Decap e assincrono por baixo do pano: para uma imagem
+       ainda nao usada nesta sessao do painel, a PRIMEIRA chamada devolve
+       sempre um "asset vazio" (um SVG 0x0, sem erro nenhum - a imagem parece
+       so nao ter carregado) e so dispara o carregamento real em segundo
+       plano; so uma chamada POSTERIOR devolve a imagem verdadeira. Sem nada
+       a forcar esse novo render, o widget podia ficar preso a mostrar o
+       vazio para sempre - era isto que fazia a imagem "as vezes" nao
+       aparecer no painel. Ao apanhar um vazio, agenda-se uma nova tentativa:
+       forceUpdate salta o shouldComponentUpdate de proposito. */
     urlDaImagem: function (caminho) {
       if (!caminho) return '';
       if (/^(https?:)?\/\//.test(caminho) || caminho.indexOf('data:') === 0) return caminho;
-      var asset = this.props.getAsset ? this.props.getAsset(caminho, this.props.field) : null;
+      if (!this.props.getAsset) return caminho;
+
+      if (caminho !== this._ultimoCaminhoAsset) {
+        this._ultimoCaminhoAsset = caminho;
+        this._tentativasAsset = 0;
+      }
+
+      var asset = this.props.getAsset(caminho, this.props.field);
+      if (asset && asset.path === 'empty.svg') {
+        this.agendarNovaTentativaDeAsset();
+        return '';
+      }
       return asset ? String(asset) : caminho;
+    },
+
+    agendarNovaTentativaDeAsset: function () {
+      if (this._temporizadorAsset != null || !this._montado) return;
+      this._tentativasAsset = (this._tentativasAsset || 0) + 1;
+      if (this._tentativasAsset > 30) return;
+      var self = this;
+      this._temporizadorAsset = setTimeout(function () {
+        self._temporizadorAsset = null;
+        if (self._montado) self.forceUpdate();
+      }, 400);
     },
 
     /* --- Render ----------------------------------------------------------- */
