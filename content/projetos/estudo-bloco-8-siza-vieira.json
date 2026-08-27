@@ -1,12 +1,12 @@
 {
   "emCurso": false,
   "capa": {
-    "imagem": "/images/uploads/ham.png",
+    "imagem": "/images/uploads/desenhos_1_tiago_vilar_vetor.png",
     "x": 0,
-    "y": -0.23957322987390883,
+    "y": 0,
     "w": 1,
-    "h": 1.4791464597478177,
-    "proporcao": 1
+    "h": 1,
+    "proporcao": 1.4791464597478177
   },
   "titulo": "estudo bloco 8 siza vieira",
   "data": "2026-09",
