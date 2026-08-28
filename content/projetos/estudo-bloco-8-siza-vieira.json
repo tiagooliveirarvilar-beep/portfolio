@@ -1,15 +1,4 @@
 {
-  "emCurso": false,
-  "capa": {
-    "imagem": "/images/uploads/chatgpt-image-28_08_2026-23_07_58.png",
-    "x": 0,
-    "y": 0,
-    "w": 1,
-    "h": 1,
-    "proporcao": 1.486328125
-  },
-  "titulo": "estudo bloco 8 siza vieira",
-  "data": "2026-09",
   "imagens": [
     {
       "imagem": {
@@ -33,5 +22,21 @@
       },
       "legenda": ""
     }
-  ]
+  ],
+  "data": "2026-09",
+  "local": "maastricht,, alemanha",
+  "disciplina": "História da Arquitectura Moderna",
+  "periodo": "2022/2023",
+  "capa": {
+    "imagem": "/images/uploads/chatgpt-image-28_08_2026-23_07_58.png",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "proporcao": 1.486328125
+  },
+  "categoria": "arquitetura académica",
+  "emCurso": false,
+  "orientacao": "Profª Mariana Sá",
+  "titulo": "estudo bloco 8 siza vieira"
 }
