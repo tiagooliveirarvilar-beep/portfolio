@@ -182,9 +182,9 @@
       "capa": {
         "imagem": "/images/uploads/interiores-de-barcos-capa.jpg",
         "x": 0,
-        "y": 0,
-        "w": 1,
-        "h": 1,
+        "y": -0.3155339805825243,
+        "w": 0.9951456310679611,
+        "h": 0.9951456310679611,
         "proporcao": 1
       },
       "categoria": "curso de curta duração",
