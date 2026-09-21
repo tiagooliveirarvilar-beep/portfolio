@@ -54,6 +54,17 @@
         "proporcao": 1
       },
       "legenda": "detalhe construtivo 3 — escala 1:2"
+    },
+    {
+      "imagem": {
+        "imagem": "/images/uploads/interiores-de-barcos-apresentacao.jpg",
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1,
+        "proporcao": 0.572632
+      },
+      "legenda": "apresentação do trabalho na esad"
     }
   ],
   "descricao": "Curso de curta duração de Design de Interiores de Barcos (Ideação e Criatividade), na ESAD, com 48 horas. Projeto do interior de uma embarcação: planta e cortes à escala 1:20, uma bancada multifuncional com três posições (bancada, comer e estar) e os respetivos detalhes construtivos.",
