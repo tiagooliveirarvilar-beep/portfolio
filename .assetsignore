@@ -1,2 +1,14 @@
+# Ficheiros que NAO fazem parte do site publicado. O wrangler publica a pasta
+# inteira do repositorio (directory = "." no wrangler.toml), por isso tudo o que
+# aqui nao for excluido acaba no site.
+#
+# O .git e o que mais importa: o historico do repositorio cresce a cada foto
+# gravada (ja passa dos 100 MiB) e, quando um unico ficheiro dele passa os
+# 25 MiB que a Cloudflare aceita, o deploy falha e o site deixa de atualizar.
 wrangler.toml
 worker
+.git
+.github
+.gitignore
+scripts
+node_modules
