@@ -1,16 +1,4 @@
 {
-  "titulo": "interiores de barcos",
-  "data": "2026-07",
-  "emCurso": false,
-  "categoria": "formação",
-  "capa": {
-    "imagem": "/images/uploads/interiores-de-barcos-capa.jpg",
-    "x": 0,
-    "y": 0,
-    "w": 1,
-    "h": 1,
-    "proporcao": 1
-  },
   "imagens": [
     {
       "imagem": {
@@ -32,49 +20,61 @@
         "h": 1,
         "proporcao": 0.770417
       },
-      "legenda": "bancada multifuncional: planta, alçados e corte d à escala 1:10, e esquema de encaixe da cadeira"
+      "legenda": "bancada multifuncional: planta, alçados e corte D à escala 1:10, e esquema de encaixe da cadeira"
     },
     {
       "imagem": {
         "imagem": "/images/uploads/interiores-de-barcos-detalhe-1.jpg",
-        "x": 0,
-        "y": 0,
-        "w": 1,
-        "h": 1,
-        "proporcao": 0.8625
+        "x": 0.13134937385676093,
+        "y": 0.17475728155339798,
+        "w": 0.8639369635570564,
+        "h": 0.8228155339805826,
+        "proporcao": 0.9056047197640117
       },
       "legenda": "detalhe construtivo 1 (os detalhes estão espelhados)"
     },
     {
       "imagem": {
         "imagem": "/images/uploads/interiores-de-barcos-detalhe-2.jpg",
-        "x": 0,
+        "x": -0.014403292181069949,
         "y": 0,
-        "w": 1,
+        "w": 1.02880658436214,
         "h": 1,
-        "proporcao": 0.972
+        "proporcao": 1
       },
       "legenda": "detalhe construtivo 2"
     },
     {
       "imagem": {
         "imagem": "/images/uploads/interiores-de-barcos-detalhe-3.jpg",
-        "x": 0,
+        "x": -0.052282768777614175,
         "y": 0,
-        "w": 1,
+        "w": 1.1045655375552283,
         "h": 1,
-        "proporcao": 0.905333
+        "proporcao": 1
       },
       "legenda": "detalhe construtivo 3 — escala 1:2"
     }
   ],
   "descricao": "Curso de curta duração de Design de Interiores de Barcos (Ideação e Criatividade), na ESAD, com 48 horas. Projeto do interior de uma embarcação: planta e cortes à escala 1:20, uma bancada multifuncional com três posições (bancada, comer e estar) e os respetivos detalhes construtivos.",
+  "formador": "jacopo marchesoni",
+  "data": "2026-07",
   "local": "esad, matosinhos",
-  "periodo": "25 jun – 10 jul 2026",
-  "disciplina": "design de interiores de barcos",
-  "area": "",
-  "colaboracao": "",
   "fotografia": "",
+  "disciplina": "design de interiores de barcos",
+  "area": "Arquitetura, Barcos",
+  "periodo": "25 jun – 10 jul 2026",
+  "capa": {
+    "imagem": "/images/uploads/interiores-de-barcos-capa.jpg",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "proporcao": 1
+  },
+  "categoria": "curso de curta duração",
+  "emCurso": false,
+  "colaboracao": "",
   "orientacao": "",
-  "formador": "jacopo marchesoni"
+  "titulo": "design interior barco"
 }
