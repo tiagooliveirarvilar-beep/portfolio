@@ -134,7 +134,7 @@
             "y": 0,
             "w": 1,
             "h": 1,
-            "proporcao": 0.775
+            "proporcao": 0.737083
           },
           "legenda": "planta e cortes a e c — escala 1:20"
         },
@@ -145,7 +145,7 @@
             "y": 0,
             "w": 1,
             "h": 1,
-            "proporcao": 0.794167
+            "proporcao": 0.770417
           },
           "legenda": "bancada multifuncional: planta, alçados e corte d à escala 1:10, e esquema de encaixe da cadeira"
         },
@@ -186,11 +186,12 @@
       "descricao": "Curso de curta duração de Design de Interiores de Barcos (Ideação e Criatividade), na ESAD, com 48 horas. Projeto do interior de uma embarcação: planta e cortes à escala 1:20, uma bancada multifuncional com três posições (bancada, comer e estar) e os respetivos detalhes construtivos.",
       "local": "esad, matosinhos",
       "periodo": "25 jun – 10 jul 2026",
-      "disciplina": "curso de curta duração",
+      "disciplina": "design de interiores de barcos",
       "area": "",
       "colaboracao": "",
       "fotografia": "",
-      "orientacao": "jacopo marchesoni e rui canela",
+      "orientacao": "",
+      "formador": "jacopo marchesoni",
       "slug": "interiores-de-barcos"
     },
     {

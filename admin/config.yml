@@ -66,6 +66,7 @@ collections:
       - { label: "Colaboração", name: "colaboracao", widget: "string", required: false }
       - { label: "Fotografia (créditos)", name: "fotografia", widget: "string", required: false }
       - { label: "Orientação", name: "orientacao", widget: "string", required: false }
+      - { label: "Formador", name: "formador", widget: "string", required: false, hint: "Para cursos e formações: quem deu o curso." }
 
   - name: "sobre"
     label: "Sobre Mim"

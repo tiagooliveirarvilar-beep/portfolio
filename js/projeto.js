@@ -36,7 +36,8 @@
   const creditos = [
     ['colaboração', projeto.colaboracao],
     ['fotografia', projeto.fotografia],
-    ['orientação', projeto.orientacao]
+    ['orientação', projeto.orientacao],
+    ['formador', projeto.formador]
   ].filter(([, valor]) => valor);
 
   const coluna = pares => pares.length
