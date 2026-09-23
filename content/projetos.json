@@ -117,6 +117,50 @@
       "imagens": [
         {
           "imagem": {
+            "imagem": "/images/uploads/interiores-de-barcos-existente-01-vista-geral.jpg",
+            "x": 0,
+            "y": 0,
+            "w": 1,
+            "h": 1,
+            "proporcao": 1.539646
+          },
+          "legenda": "o tender existente que serviu de referência ao projeto — um antigo bote de embarque do navio Ryndam, hoje desativado"
+        },
+        {
+          "imagem": {
+            "imagem": "/images/uploads/interiores-de-barcos-existente-02-identidade.jpg",
+            "x": 0,
+            "y": 0,
+            "w": 1,
+            "h": 1,
+            "proporcao": 1.50263
+          },
+          "legenda": "\"8 — ryndam, rotterdam\": identidade da embarcação real estudada antes do desenho"
+        },
+        {
+          "imagem": {
+            "imagem": "/images/uploads/interiores-de-barcos-existente-03-casco-ceu.jpg",
+            "x": 0,
+            "y": 0,
+            "w": 1,
+            "h": 1,
+            "proporcao": 0.892778
+          },
+          "legenda": "casco e cobertura superior"
+        },
+        {
+          "imagem": {
+            "imagem": "/images/uploads/interiores-de-barcos-existente-04-interior.jpg",
+            "x": 0,
+            "y": 0,
+            "w": 1,
+            "h": 1,
+            "proporcao": 1.481481
+          },
+          "legenda": "interior do tender, ponto de partida para o projeto"
+        },
+        {
+          "imagem": {
             "imagem": "/images/uploads/interiores-de-barcos-planta-e-cortes.jpg",
             "x": 0,
             "y": 0,
